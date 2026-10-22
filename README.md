@@ -26,3 +26,18 @@ Create the audit directory first; existing output files are never overwritten. T
 Passing this audit establishes structural consistency and POI coverage, not geographic correctness or prediction accuracy. The current address generation uses local Hugging Face FP16 greedy batch-1 inference; equivalence to the official provider has not been established. Map-date and peripheral-index deviations also remain. Full session construction, collective graph, prediction evaluation and official ablations are still pending.
 
 Credentials, model weights, raw datasets and large model outputs are intentionally external to this repository. Existing exploratory memory experiments have not established a stable benefit from dynamic source selection.
+
+## Full-city address join
+
+`scripts/build_city_join.py` joins all 83,190 accepted Tokyo POI address records to the frozen city check-ins. It executes the normalization/join/export statements extracted from the checksum-verified official `processing/trajectory_address_match.py`, without its API imports or generation loops. It checks exact POI coverage, zero dropped check-ins, preservation of original columns and CSV round-trip consistency. Missing address field values retain upstream behavior.
+
+Run on Linux with pandas 2.1.4, without `python -O`. Use a **new**, nonexistent output directory under an existing parent. The worker requires 16 GiB available RAM and 2 GiB free disk; it bounds itself to two CPU cores, 8 GiB process address space and 900 CPU seconds. No GPU or model calls are needed. Apply an outer wall-time limit:
+
+```bash
+timeout --signal=TERM --kill-after=10s 960s python scripts/build_city_join.py \
+  --source "$PREPROCESSED_CITY/Tokyo_filtered.csv" \
+  --upstream "$AGENTMOVE/processing/trajectory_address_match.py" \
+  --seed "$SEED_DIR" --chunks "$L4_ROOT" --output "$NEW_JOIN_DIR"
+```
+
+Inputs are the frozen raw-city CSV, seed responses and `chunk001` through `chunk017` (with terminal `run_result.json` and `parsed_responses.jsonl`). The source and upstream checksums are pinned in the script. Outputs are `Tokyo_addr_dict.json`, the address-enriched `Tokyo_filtered.csv`, and `result.json` with counts, checksums, resource measurements and input manifests. Raw inputs and enriched check-ins stay outside Git. A passing join does not establish geographic correctness; session construction, prediction and ablations remain separate steps.
