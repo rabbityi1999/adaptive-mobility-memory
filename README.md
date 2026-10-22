@@ -4,9 +4,9 @@ Research on adaptive personal and collective memory for next-location prediction
 
 **[工作文档：论文指标、复现结果与后续计划](docs/WORK_LOG.md)** — the maintained project record. It separates published AgentMove scores, accepted preprocessing results, engineering checks and exploratory memory experiments.
 
-The next prediction comparison uses **local Meta-Llama-3-8B-Instruct** for AgentMove and LLM-ZS, then the same model for ablations. See [the frozen model choice and planned settings](configs/tokyo_llama3_baseline.json). This is a substitute-model framework reproduction; the paper's main table uses GPT-4o-mini.
+The completed 200-user prediction comparison uses **local Meta-Llama-3-8B-Instruct** for AgentMove and LLM-ZS, then the same model for ablations. See [the frozen model choice and planned settings](configs/tokyo_llama3_baseline.json). This is a substitute-model framework reproduction; the paper's main table uses GPT-4o-mini.
 
-This repository is being populated prospectively from an existing research workspace. It currently contains address-processing verification code, **not a complete AgentMove reproduction** or a validated memory-routing method.
+This repository is being populated prospectively from an existing research workspace. It contains address/session/input verification, prediction runners and the completed three-condition Llama3 results. Official module ablations and paper-protocol alignment remain unfinished; adaptive memory routing has not been validated.
 
 ## Final Tokyo address audit
 
@@ -27,7 +27,7 @@ Create the audit directory first; existing output files are never overwritten. T
 
 **Trusted input:** the normalization JSON contains a `statement` copied from the audited official preprocessing code and executes as Python. Only supply the trusted frozen project artifact, never a downloaded or unreviewed statement. The upstream code revision is `61a3e47667f2862c81478bfa442595b766f2f4d6`.
 
-Passing this audit establishes structural consistency and POI coverage, not geographic correctness or prediction accuracy. The current address generation uses local Hugging Face FP16 greedy batch-1 inference; equivalence to the official provider has not been established. Map-date and peripheral-index deviations also remain. Full session construction, collective graph, prediction evaluation and official ablations are still pending.
+Passing this audit establishes structural consistency and POI coverage, not geographic correctness or prediction accuracy. The current address generation uses local Hugging Face FP16 greedy batch-1 inference; equivalence to the official provider has not been established. Map-date and peripheral-index deviations also remain. Full session construction, collective graph and the first prediction comparison have since completed; official ablations remain pending (see the maintained work document).
 
 Credentials, model weights, raw datasets and large model outputs are intentionally external to this repository. Existing exploratory memory experiments have not established a stable benefit from dynamic source selection.
 
@@ -120,3 +120,7 @@ python scripts/validate_llama3_results.py --run "$COMPLETED_RUN" \
 ```
 
 Unfinished or failed jobs are rejected before performance is read. The output path must not exist. The validator checks the fixed600 result files and labels, preserves200 users per condition, compares independently computed scores with the runner, and reports paired bootstrap intervals, exact Acc@1 discordance tests with three-pair Holm adjustment and separate WKG costs. See the dated analysis section in the protocol. It does not rerun the model or establish paper-level equivalence.
+
+## Accepted Tokyo 200-query results (2026-10-23)
+
+[Results, paired uncertainty, output diagnostics and costs](docs/TOKYO_200_RESULTS.md): original-CKE AgentMove / event-time-filtered AgentMove / LLM-ZS achieved Acc@1 15.5% / 15.5% / 12.5% and Acc@5 35.5% / 36.5% / 34.5%. All 600 outputs passed independent scoring. Acc@1 differences against LLM-ZS were not statistically significant. This is a substitute-model framework result; paper-level alignment and module ablations remain open. The completed job must not be relaunched.

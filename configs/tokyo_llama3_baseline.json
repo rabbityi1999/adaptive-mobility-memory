@@ -1,6 +1,6 @@
 {
   "experiment": "Tokyo AgentMove framework reproduction with local Llama-3-8B-Instruct",
-  "status": "three_condition_inference_running",
+  "status": "completed_scores_independently_recomputed",
   "model": "Meta-Llama-3-8B-Instruct",
   "backend": "local_huggingface",
   "precision": "float16",
@@ -44,5 +44,6 @@
   "causal_bundle_sha256": "4d218ea3aa09579384f166d71d636d32e27d05d2f1b6521889d455c78d3f0dc9",
   "official_cke_condition": "non-causal original-code diagnostic",
   "shared_wkg_calls_per_query": 2,
-  "python_hash_seed": 100
+  "python_hash_seed": 100,
+  "aggregate_results": "reports/tokyo_llama3_200_results_20261023.json"
 }
