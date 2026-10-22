@@ -1,0 +1,106 @@
+{
+  "status": "ablation_input_audit_pass",
+  "checked_at": 1792708033.9308586,
+  "model_calls": 0,
+  "users": 200,
+  "completed_prediction_files_checked": 600,
+  "full_prompts_reconstructed": 400,
+  "wkg_cache_rows_matched_to_calls_and_formatter": 200,
+  "upstream_agent_prompt_branches": [
+    "agent_move_v6"
+  ],
+  "upstream_memory_fields_in_full_prompt": [
+    "historical_info",
+    "user_profile"
+  ],
+  "llmzs_differs_from_empty_module_full_template_queries": 200,
+  "retained_payloads_after_recorded_clipping": {
+    "agent_move_v6_causalCKE": {
+      "WKG": {
+        "full": 172,
+        "partial": 18,
+        "missing": 10,
+        "empty_source": 0
+      },
+      "CKE": {
+        "full": 184,
+        "partial": 4,
+        "missing": 5,
+        "empty_source": 7
+      },
+      "STM": {
+        "full": 195,
+        "partial": 5,
+        "missing": 0,
+        "empty_source": 0
+      },
+      "history": {
+        "full": 200,
+        "partial": 0,
+        "missing": 0,
+        "empty_source": 0
+      },
+      "output": {
+        "full": 200,
+        "partial": 0,
+        "missing": 0,
+        "empty_source": 0
+      }
+    },
+    "agent_move_v6_officialCKE": {
+      "WKG": {
+        "full": 172,
+        "partial": 18,
+        "missing": 10,
+        "empty_source": 0
+      },
+      "CKE": {
+        "full": 185,
+        "partial": 4,
+        "missing": 5,
+        "empty_source": 6
+      },
+      "STM": {
+        "full": 195,
+        "partial": 5,
+        "missing": 0,
+        "empty_source": 0
+      },
+      "history": {
+        "full": 200,
+        "partial": 0,
+        "missing": 0,
+        "empty_source": 0
+      },
+      "output": {
+        "full": 200,
+        "partial": 0,
+        "missing": 0,
+        "empty_source": 0
+      }
+    }
+  },
+  "definition": "Character-span retention of each original section payload, excluding heading and outer whitespace. Empty source is distinct from clipping loss. Missing means zero characters from an originally nonempty span remain, not absence of overlapping facts elsewhere.",
+  "source_sha256": {
+    "models/prompts.py": "14b44b5b216825561eed907dbc8dcd44fea3d53e134b7ce9581f785d3f476ff4",
+    "models/personal_memory.py": "aef9e9538ae767f55d981b9814c8929b0bdab24c8e79214f950b57eed0782fd9",
+    "models/world_model.py": "7b251f5237b7b87fa70f7061ec26c1a88031798752048210c8dc6f7803d71f5c",
+    "agent.py": "b03c77b10350213dabf6363613039eba519fefec9b41ad3807d7df7281cf83cf"
+  },
+  "audit_script_sha256": "39a18de9a70e1fff10c3bd362a393f8f265004d5d4742f3a8f96eb9df8734bdb",
+  "input_sha256": {
+    "run_metadata.json": "cbb28ea181a1b6f28cf78fbff9461ed5e1c02449583d543cf3664f03eb816cc3",
+    "validated_summary.json": "5e87fc158b7262875690f0e21c12029b05c51d3e76fe43ca7625497b28f35e8f",
+    "calls.jsonl": "d65cd09ae929d175ec175aad106d21a46b9caa0425a7621baf80cef432670169",
+    "wkg_cache.jsonl": "66d7742cf9972a2d3c035737087eeeac0756fe6459242900d8412e5f05cc20c0"
+  },
+  "bundle_sha256": "4d218ea3aa09579384f166d71d636d32e27d05d2f1b6521889d455c78d3f0dc9",
+  "result_tree_sha256": "1c6ae95ec21e639bbed500c44e9aab4eac0f5316c320810d07e74c623ad8d1cc",
+  "effective_prompt_map_sha256": "219b01ba5e1248214f4a5ca9584255f3605a96b624ce9a1ce85a6c9776faa6cd",
+  "caveats": [
+    "No new model inference or accuracy computation.",
+    "Original CKE payload is read from the accepted output; no new graph reconstruction in this audit.",
+    "Public pinned prompt generator has no separate Table2 ablation branches; this does not establish what unpublished author scripts did.",
+    "Payload retention does not prove attention, comprehension or causal score impact."
+  ]
+}

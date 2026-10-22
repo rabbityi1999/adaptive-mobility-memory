@@ -124,3 +124,7 @@ Unfinished or failed jobs are rejected before performance is read. The output pa
 ## Accepted Tokyo 200-query results (2026-10-23)
 
 [Results, paired uncertainty, output diagnostics and costs](docs/TOKYO_200_RESULTS.md): original-CKE AgentMove / event-time-filtered AgentMove / LLM-ZS achieved Acc@1 15.5% / 15.5% / 12.5% and Acc@5 35.5% / 36.5% / 34.5%. All 600 outputs passed independent scoring. Acc@1 differences against LLM-ZS were not statistically significant. This is a substitute-model framework result; paper-level alignment and module ablations remain open. The completed job must not be relaunched.
+
+## Ablation input audit and next protocol
+
+[The source audit and reconstruction protocol](docs/TOKYO_ABLATION_PROTOCOL.md) document the absence of separate ablation branches in the pinned full-agent prompt function, differences between LLM-ZS and an ablation base, exact reconstruction of400 full prompts, and verification of200 WKG cache entries. The [aggregate audit](reports/tokyo_ablation_input_audit_20261023.json) reports actual section retention after clipping. No new inference was performed. Run `scripts/audit_ablation_inputs.py` with the existing completed run, causal_v2 bundle and pinned upstream source as documented in the protocol. The next ablations will be labeled reconstructions, with an unchanged full-condition identity check before launch.

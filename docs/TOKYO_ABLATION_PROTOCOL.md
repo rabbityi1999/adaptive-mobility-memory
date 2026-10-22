@@ -1,0 +1,80 @@
+# Tokyo module ablations: source audit and reconstruction protocol
+
+## Material Passport
+
+- Origin Skill: experiment-agent
+- Origin Mode: run (offline input audit and next-run specification)
+- Origin Date: 2026-10-23 (Asia/Shanghai)
+- Verification Status: ANALYZED
+- Version Label: ablation_input_audit_v2
+
+## Completed verification
+
+[Aggregate audit](../reports/tokyo_ablation_input_audit_20261023.json) and [audit script](../scripts/audit_ablation_inputs.py) establish the following for the accepted 200-user run:
+
+1. All 600 saved prediction files still match the previously validated output-tree hash. All recorded effective prompts match their prompt hashes and the original clipping operation. No prediction was rerun, repaired or rescored.
+2. All 400 full-framework prompts can be reconstructed exactly from the pinned prompt function, deterministic Memory readout and cached spatial information. For the original static-CKE condition, the CKE string is taken from the accepted original prompt; this audit does not repeat graph construction. For the filtered condition it comes from the accepted time-filtered bundle.
+3. All 200 WKG cache entries match the two corresponding generation outputs and the pinned SpatialWorld formatter. They are eligible for reuse without new WKG calls, provided the manifest, input, model and source hashes remain fixed.
+4. The pinned `prompt_generator_agent` implements only `agent_move_v6`. The full prompt reads `historical_info` and `user_profile` from Memory; the computed `context_info` field is not inserted as a separate summary. Recent context stays remain in the history-data section.
+5. LLM-ZS includes historical/context times and IDs, whereas the full framework also has category/address fields and a different instruction template. Its prompt differs from the empty-module full template for all 200 queries. LLM-ZS is not an interchangeable ablation base.
+
+The server source directory has no resolvable Git HEAD; provenance is established here by exact file hashes against the previously pinned source snapshot, not a fresh Git checkout claim. This audit concerns that snapshot, not unpublished author code. In particular, it cannot determine the exact prompts behind the paper's Table 2. Reconstructed ablations must be labeled as such.
+
+## Actual retained evidence
+
+Counts below describe the original non-whitespace payload span after the recorded prompt clipping; they do not measure attention or comprehension. “Empty before clipping” is distinct from evidence removed by clipping. A lost span does not imply that all overlapping facts elsewhere in the prompt disappeared.
+
+| Condition / payload | Fully retained | Partially retained | Completely removed | Empty before clipping |
+|---|---:|---:|---:|---:|
+| Original CKE / WKG |172|18|10|0|
+| Original CKE / CKE |185|4|5|6|
+| Original CKE / STM summaries |195|5|0|0|
+| Filtered CKE / WKG |172|18|10|0|
+| Filtered CKE / CKE |184|4|5|7|
+| Filtered CKE / STM summaries |195|5|0|0|
+
+All 200 history-data and output-instruction payloads remain intact in both framework conditions. The ten WKG losses and five CKE losses are counts within each 200-query condition; do not sum them as independent users or infer their intersection from these aggregates. The initial audit mistakenly required every source payload to be nonempty and stopped on an empty CKE block; the corrected audit distinguishes empty source from clipping loss, passed boundary checks and exited 0. The failed audit did not write a result or call a model. Prior predictions and scores were unchanged.
+
+## Next inference: explicitly reconstructed ablations
+
+Use the same accepted 200 users, local Llama3 FP16 greedy model, model/tokenizer files, ordered manifest, time-filtered CKE bundle and WKG cache. This is an observed benchmark cohort; no prompt selection or tuning based on its outcomes, and no claim of new independent validation. There is no published Tokyo Table 2 row to replicate.
+
+The controlled base retains the full framework's task, address/category-enriched history and context, masked target and output specification. Remove only module sections and their module-specific instructions. It therefore remains a personal-history baseline, not a memory-free or LLM-ZS baseline.
+
+| Reconstructed condition | STM summary/profile | WKG | Filtered CKE | Prediction execution |
+|---|---|---|---|---|
+| base |off|off|off|200 new calls|
+| +STM |on|off|off|200 new calls|
+| +WKG |off|on|off|200 new calls|
+| +CKE |off|off|on|200 new calls|
+| +STM+WKG |on|on|off|200 new calls|
+| full |on|on|on|reuse 200 accepted filtered-CKE outputs after exact prompt/input/model/hash checks|
+
+Keep the original static-CKE result and LLM-ZS result as separately labeled references. Do not silently mix original and filtered CKE within the ablation table. Do not modify the original upstream files.
+
+Reconstruction rule: starting from the full `agent_move_v6` prompt, remove the entire WKG/CKE/STM section, including its heading and payload, when disabled. Remove instruction 3 when WKG is disabled and instruction 4 when STM is disabled. Preserve all other text, relative order, raw history fields and prediction parsing. For full, the transformation must be the identity, byte for byte. Build this adapter and prove the full identity and disabled-section exclusion for all 200 queries before launching inference. Record each condition's original and effective prompt hash and retained payload spans; preserve the existing GPT-token threshold and last-6,000-character clipping.
+
+Deleting a section changes prompt length and can change how much other evidence survives clipping. Consequently these comparisons estimate the effect of the implemented module-plus-prompt configuration under the existing interface; they are not a perfectly token-matched attribution of a memory mechanism. Do not tune a new clipping policy on this benchmark. An interface change belongs to a separate development protocol.
+
+Budget: 1,000 new prediction calls, zero new WKG generations, with 200 full predictions reused. Distinguish incremental execution cost from standalone condition cost (include historical WKG generation for any standalone WKG-enabled condition). Each condition has a fixed denominator of 200; keep empty/error outputs as misses. No correctness-based retries. Prefer GPU0 after a fresh availability check and cooperative lock; retain the established two-CPU/nice19 and six-hour execution limit.
+
+Before launch, the new runner must also verify the accepted run's terminal status, manifest, output-tree hash, source hashes, WKG cache hashes and model fingerprint evidence. A validation or launch failure is not a completed experiment; retain diagnostics and do not duplicate active jobs. At this checkpoint the runner adapter is **not yet implemented** and no ablation inference is running.
+
+## Analysis fixed for the next run
+
+Report Acc@1, Acc@5 and strict NDCG@5 for all six conditions, plus untruncated official NDCG, empty/malformed/parse-fallback counts, retained evidence spans, tokens and time. Use all fixed users, not only successful or covered cases.
+
+Predefine six comparisons: each of +STM, +WKG, +CKE, +STM+WKG and full against the controlled base, and full against +STM+WKG. Report paired-user percentile bootstrap 95% intervals with 10,000 draws and seed20261023 for all three metrics; Acc@1 exact discordance p-values with Holm adjustment over these six comparisons. Intervals are descriptive, not simultaneous; the ordered sample is not a random population sample. Disclose effect sizes and all planned comparisons regardless of significance. No new routing-method claim follows from module ablations alone.
+
+## Audit reproduction
+
+Use the existing Python/pandas environment (pandas2.1.4); no GPU or model load. Output must be a new path. Only aggregate counts/hashes are written.
+
+```bash
+python scripts/audit_ablation_inputs.py --self-test
+PYTHONHASHSEED=100 python scripts/audit_ablation_inputs.py \
+  --run "$COMPLETED_RUN" --bundle "$CAUSAL_V2_BUNDLE" \
+  --upstream "$PINNED_UPSTREAM" --output "$NEW_AUDIT_JSON"
+```
+
+Inputs are trusted local completed-run artifacts, including `validated_summary.json`, the 600 predictions, `calls.jsonl` and `wkg_cache.jsonl`. The script executes only pinned pure prompt/Memory/formatter definitions through AST extraction, blocks network, and uses two CPU-affinity cores at low priority. It does not verify map accuracy or cure the outstanding paper/code filtering and trajectory-count mismatch.
