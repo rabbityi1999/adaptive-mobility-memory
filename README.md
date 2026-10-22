@@ -2,6 +2,8 @@
 
 Research on adaptive personal and collective memory for next-location prediction under behavioral change.
 
+**[工作文档：论文指标、复现结果与后续计划](docs/WORK_LOG.md)** — the maintained project record. It separates published AgentMove scores, accepted preprocessing results, engineering checks and exploratory memory experiments.
+
 This repository is being populated prospectively from an existing research workspace. It currently contains address-processing verification code, **not a complete AgentMove reproduction** or a validated memory-routing method.
 
 ## Final Tokyo address audit
