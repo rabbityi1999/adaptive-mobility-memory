@@ -1,0 +1,76 @@
+{
+  "status": "prediction_inputs_and_graph_pass",
+  "checked_at": 1792671742.241878,
+  "model_calls": 0,
+  "prediction_scores_available": false,
+  "audited_test_instances": 10917,
+  "dictionary_users": 12464,
+  "users_with_test": 4041,
+  "selected_queries": 200,
+  "selected_users": 200,
+  "target_masking": "all instances passed",
+  "graph_nodes": 60053,
+  "graph_edges": 323106,
+  "graph_directed": false,
+  "graph_edge_set_matches_history": true,
+  "graph_reload_verified": true,
+  "collective_input_history_records": 640380,
+  "selected_queries_with_later_collective_history": 200,
+  "later_collective_history_records_range": [
+    314,
+    396625
+  ],
+  "collective_time_note": "Official per-user splits retained; later records from other users may enter CKE. Not a globally time-causal evaluation.",
+  "count_audit": {
+    "paper_table4_trajectories": 112942,
+    "raw_sessions": 277509,
+    "all_sessions_at_least4": 91270,
+    "sessions_at_least4_of_users_at_least5_raw_sessions": 88611,
+    "interpretation": "Descriptive counts only; no protocol changed to match paper"
+  },
+  "dataset_user_min_sessions": 3,
+  "paper_appendix_user_min_sessions": 5,
+  "checkpoint_sha256": "da1b75d8b62de6f9697ccee0d612d108d5a516afbcedf5263035c103de5d940a",
+  "upstream_sha256": {
+    "processing/data.py": "de6bd5b410f3c4e7f402869a16a4e0d3e419a9c52d24d4bf4e754def071a07b8",
+    "utils.py": "8eb71891071e804bf69cbdf6aa371c267d6c2e73e030512e8fb91824a70abff4",
+    "models/world_model.py": "7b251f5237b7b87fa70f7061ec26c1a88031798752048210c8dc6f7803d71f5c",
+    "agent.py": "b03c77b10350213dabf6363613039eba519fefec9b41ad3807d7df7281cf83cf"
+  },
+  "script_sha256": "3c295af59d0b63db4d5bd6feb7c750dcc43fa526c2ee7113ef8af1420de36dc3",
+  "suffix_ast_sha256": "b70215cd39be734c7dbc90d2333084247e6d23f3b1c914c1e711d073a2b1f938",
+  "artifacts": {
+    "align_locations_Tokyo_trajectory_split.json": {
+      "bytes": 495631652,
+      "sha256": "f65fb807e454ed9ac83e86d465cab50c25d3af986cee8813f3faf90684e4650b"
+    },
+    "true_locations_Tokyo_trajectory_split.json": {
+      "bytes": 2044220,
+      "sha256": "992ab6e94b255b7a8051bfdf1d1a82f9e5c2d908518b2af9c8343a4ff236521d"
+    },
+    "test_dictionary_Tokyo_trajectory_split.json": {
+      "bytes": 836112392,
+      "sha256": "5235f40573f78bf240e33aefadca7264655dc332b3a865c691b8385fd4eb504d"
+    },
+    "Tokyo_graph.gml": {
+      "bytes": 30927279,
+      "sha256": "70abf2c28f5599b0b7fc9235fd1b18a4856aaf7354525499f9403602f29de5d0"
+    },
+    "query_selection.json": {
+      "bytes": 5838,
+      "sha256": "526e73882604a4ebdb6632c3f3b0bfcf42ef842953299d5ee82a29fad1bddefb"
+    },
+    "count_audit.json": {
+      "bytes": 248,
+      "sha256": "5635383642ccf6cf10619ff937343a94040b5a83b4c9b6c2d56536bbb646e8de"
+    }
+  },
+  "elapsed_seconds": 726.5998630523682,
+  "peak_rss_kib": 3585008,
+  "limits": {
+    "cpu_cores": 2,
+    "address_space_gib": 24,
+    "cpu_seconds": 7200,
+    "outer_wall_seconds": 9000
+  }
+}

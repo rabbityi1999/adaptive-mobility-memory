@@ -70,3 +70,17 @@ python scripts/prepare_prediction_inputs.py --launch \
 Use Linux with pandas2.1.4, NumPy1.26.4 and NetworkX3.3; require48GiB available RAM and10GiB disk. `--launch` creates a new directory, detaches a worker with two CPU affinity cores, nice19,24GiB address-space limit,7200 CPU seconds and9000 wall seconds. Monitor `launch.json`, `status.json`, `run.log` and the supervisor/worker PIDs. Do not repeat the launch for an active run. An absent result is not success; only accept `prediction_inputs_and_graph_pass` after the worker exits.
 
 Outputs include official processed JSON dictionaries, `Tokyo_graph.gml`, the frozen query selection, a descriptive trajectory-count comparison and aggregate `result.json`. Keep raw outputs outside Git. Seed1234 is an explicit reproducibility setting for the upstream DL training sample; the Agent's final selection is ordered. The graph retains upstream inclusion of target-user history, undirected edges and unsorted neighbors. The audit counts selected queries exposed to later collective-history records across users: it does not silently repair this official behavior or claim globally causal evaluation. Resolve/document this and the paper/code filtering differences before comparing scores. Reload the saved graph consistently for subsequent conditions because serialization can affect neighbor iteration order.
+
+## Accepted input checkpoint and evaluator contract
+
+The full Tokyo input preparation completed in726.60s, peakRSS3.42GiB, with zero model calls:10,917 audited inputs,60,053 graph nodes,323,106 edges and200 selected users. All six artifact hashes were rechecked after completion; the detached supervisor did not retain its final exit code. See [aggregate input report](reports/tokyo_prediction_inputs_20261022.json).
+
+All200 query times precede some records in the official collective-history pool. This is a pool-level time violation, not proof that each retrieved neighbor or prediction used a future event. Preserve the original-code condition and separately construct timestamp-valid evidence before making causal or adaptive-memory claims.
+
+Run the synthetic evaluator audit against the frozen upstream file:
+
+```bash
+python scripts/audit_official_evaluator.py --source "$AGENTMOVE/evaluate/evaluations.py" --output "$NEW_AUDIT_JSON"
+```
+
+It extracts only the hash-pinned evaluator class, uses synthetic IDs and no API or model. Python standard library is sufficient; `np.log2` is supplied by `math.log2` for these scalar cases. [Recorded cases](reports/evaluator_contract_20261022.json) show untruncated official NDCG, retained empty predictions, and denominator loss for missing output keys or unreadable files. Future evaluation must report both official-compatible values and fixed-manifest Acc@1/5 plus strict NDCG@5. Synthetic scores are not reproduction results.

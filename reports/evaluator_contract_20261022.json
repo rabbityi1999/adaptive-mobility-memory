@@ -1,0 +1,58 @@
+{
+  "status": "synthetic_evaluator_boundary_audit_pass",
+  "source_sha256": "718b07d02fabfb95e3248a9dda5e0b7d965158e1db25767187a4cd9d688084eb",
+  "model_calls": 0,
+  "experimental_prediction_scores": false,
+  "cases": {
+    "rank_6": {
+      "intended_queries": 1,
+      "loaded_rows": 1,
+      "official_accuracy_denominator": 1,
+      "official_acc1": 0.0,
+      "official_acc5": 0.0,
+      "official_ndcg": 0.3562071871080222,
+      "fixed_denominator_acc1": 0.0,
+      "fixed_denominator_acc5": 0.0,
+      "strict_ndcg5": 0.0
+    },
+    "empty_prediction": {
+      "intended_queries": 1,
+      "loaded_rows": 1,
+      "official_accuracy_denominator": 1,
+      "official_acc1": 0.0,
+      "official_acc5": 0.0,
+      "official_ndcg": 0.0,
+      "fixed_denominator_acc1": 0.0,
+      "fixed_denominator_acc5": 0.0,
+      "strict_ndcg5": 0.0
+    },
+    "missing_output_key": {
+      "intended_queries": 2,
+      "loaded_rows": 2,
+      "official_accuracy_denominator": 1,
+      "official_acc1": 1.0,
+      "official_acc5": 1.0,
+      "official_ndcg": 0.5,
+      "fixed_denominator_acc1": 0.5,
+      "fixed_denominator_acc5": 0.5,
+      "strict_ndcg5": 0.5
+    },
+    "unreadable_files": {
+      "intended_queries": 3,
+      "loaded_rows": 1,
+      "official_accuracy_denominator": 1,
+      "official_acc1": 1.0,
+      "official_acc5": 1.0,
+      "official_ndcg": 1.0,
+      "fixed_denominator_acc1": 0.3333333333333333,
+      "fixed_denominator_acc5": 0.3333333333333333,
+      "strict_ndcg5": 0.3333333333333333
+    }
+  },
+  "findings": [
+    "Official NDCG is not truncated at rank5.",
+    "Empty predictions with output key stay in accuracy denominator.",
+    "Missing output keys and unreadable files can shrink accuracy denominator."
+  ],
+  "required_reporting": "Report official-compatible metrics separately from fixed-manifest Acc@1/5 and strict NDCG@5; count failed/missing planned predictions as misses."
+}
