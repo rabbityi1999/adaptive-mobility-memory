@@ -1,0 +1,26 @@
+{
+  "status": "inference_running_not_final",
+  "gpu": 0,
+  "model": "Meta-Llama-3-8B-Instruct",
+  "queries": 200,
+  "independent_users": 200,
+  "planned_predictions": 600,
+  "planned_shared_wkg_calls": 400,
+  "conditions": [
+    "agent_move_v6_causalCKE",
+    "llmzs",
+    "agent_move_v6_officialCKE"
+  ],
+  "initial_completed_queries": 1,
+  "initial_completed_calls": 6,
+  "preflight": "passed_exit0_no_model_calls",
+  "runner_sha256": "3f626065af91fb07ff5e439e014f5c0ffd1b388ef5a42d56295f84400621f16a",
+  "causal_bundle_sha256": "4d218ea3aa09579384f166d71d636d32e27d05d2f1b6521889d455c78d3f0dc9",
+  "query_selection_sha256": "526e73882604a4ebdb6632c3f3b0bfcf42ef842953299d5ee82a29fad1bddefb",
+  "results_available": false,
+  "limitations": [
+    "Local substitute model; not GPT4omini main table equivalence",
+    "Official static CKE condition is explicitly non-causal",
+    "Causal condition filters event times but uses fixed offline membership and modern map metadata"
+  ]
+}

@@ -84,3 +84,29 @@ python scripts/audit_official_evaluator.py --source "$AGENTMOVE/evaluate/evaluat
 ```
 
 It extracts only the hash-pinned evaluator class, uses synthetic IDs and no API or model. Python standard library is sufficient; `np.log2` is supplied by `math.log2` for these scalar cases. [Recorded cases](reports/evaluator_contract_20261022.json) show untruncated official NDCG, retained empty predictions, and denominator loss for missing output keys or unreadable files. Future evaluation must report both official-compatible values and fixed-manifest Acc@1/5 plus strict NDCG@5. Synthetic scores are not reproduction results.
+
+## Timestamp-filtered evidence and the 200-query model run
+
+Follow the frozen [comparison protocol](docs/TOKYO_200_PROTOCOL.md). First prepare time-filtered evidence on CPU (Linux, pandas, NumPy and NetworkX from the existing environment):
+
+```bash
+timeout --signal=TERM --kill-after=20s 1800s python scripts/build_causal_bundle.py \
+  --inputs "$ACCEPTED_INPUTS" --checkpoint "$SESSION_DIR" \
+  --upstream "$AGENTMOVE" --output "$NEW_CAUSAL_DIR"
+```
+
+The directory must be new. It uses two CPU affinity cores, nice19 and a24GiB address-space cap. Accept only `causal_bundle_pass`; preserve `causal_bundle.json` and per-query provenance outside Git. The [aggregate evidence audit](reports/tokyo_causal_evidence_20261022.json) records source/time/order checks. Event-time validity does not establish historical validity of the modern map or benchmark membership.
+
+Use absolute paths for all path variables below because detached workers change their working directory. Validate the model transport without loading model weights or making model calls:
+
+```bash
+python scripts/run_llama3_baseline.py --launch --preflight-only \
+  --upstream "$AGENTMOVE" --inputs "$ACCEPTED_INPUTS" --model "$LLAMA_MODEL" \
+  --token-cache "$TOKEN_CACHE" --causal-bundle "$NEW_CAUSAL_DIR/causal_bundle.json" \
+  --weight-manifest "$PRIOR_WEIGHT_MANIFEST" --include-official-cke \
+  --gpu 0 --output "$NEW_PREFLIGHT_DIR"
+```
+
+After `preflight_pass` and exit0, use the same command with a **different new output directory** and omit `--preflight-only` to run200 queries in all three conditions. `--include-official-cke` labels the static graph as a non-causal diagnostic. The default includes causal-CKE AgentMove and LLM-ZS. WKG is cached/shared across framework conditions; its failure does not suppress an otherwise runnable LLM-ZS query.
+
+The runner verifies inputs, prior weight sizes/mtimes and model metadata, uses local-only HF FP16/greedy decoding, and disables network. It requires at least32GiB available RAM and19GiB free on a GPU below10% utilization, checks again before model loading, takes a cooperative GPU lock and caps its CUDA allocator at80%. CUDA virtual mappings preclude a meaningful process address-space cap here; host RAM is checked, not claimed to be hard limited. The supervisor enforces a six-hour timeout and records `exit.json`. Monitor `status.json`, `run.log`, calls and error files; never duplicate an active run. Outputs and failed-query placeholders retain the fixed200 denominator. Completion is not established by launch success. Keep raw outputs local; publish aggregate metrics only after checking all planned conditions and failures.

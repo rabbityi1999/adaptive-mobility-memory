@@ -1,6 +1,6 @@
 {
   "experiment": "Tokyo AgentMove framework reproduction with local Llama-3-8B-Instruct",
-  "status": "model_selected_prediction_not_started",
+  "status": "three_condition_inference_running",
   "model": "Meta-Llama-3-8B-Instruct",
   "backend": "local_huggingface",
   "precision": "float16",
@@ -8,7 +8,11 @@
   "batch_size": 1,
   "max_new_tokens": 1000,
   "seed": 100,
-  "conditions_first": ["agent_move_v6", "llmzs"],
+  "conditions_first": [
+    "agent_move_v6_causalCKE",
+    "llmzs",
+    "agent_move_v6_officialCKE"
+  ],
   "same_model_for_ablations": true,
   "target_queries": 200,
   "sample_one_traj_of_user": true,
@@ -18,7 +22,12 @@
   "memory_lens": 15,
   "context_stays_parameter": 6,
   "preferred_gpu": 0,
-  "authorized_gpus": [0, 1, 2, 3],
+  "authorized_gpus": [
+    0,
+    1,
+    2,
+    3
+  ],
   "minimum_free_gpu_memory_mib": 19456,
   "paper_main_table_model": "GPT-4o-mini",
   "paper_main_table_equivalent": false,
@@ -30,5 +39,10 @@
     "actual tokenizer, prompt clipping and decoding settings",
     "evaluation denominator, failures and NDCG implementation",
     "model file fingerprints and fresh GPU availability"
-  ]
+  ],
+  "causal_cutoff": "last observed context check-in",
+  "causal_bundle_sha256": "4d218ea3aa09579384f166d71d636d32e27d05d2f1b6521889d455c78d3f0dc9",
+  "official_cke_condition": "non-causal original-code diagnostic",
+  "shared_wkg_calls_per_query": 2,
+  "python_hash_seed": 100
 }

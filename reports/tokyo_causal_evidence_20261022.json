@@ -1,0 +1,29 @@
+{
+  "status": "causal_bundle_pass",
+  "model_calls": 0,
+  "queries": 200,
+  "selected_users": 200,
+  "cutoff_rule": "last observed context check-in; event timestamps <= cutoff",
+  "fixed_offline_membership": true,
+  "map_historical_validity_not_established": true,
+  "retained_upstream_neighbor_limit": 11,
+  "independent_graph_checks": [
+    0,
+    99,
+    199
+  ],
+  "graph_reload_order_matched": true,
+  "unfiltered_retrieval_matches_official_all_queries": true,
+  "bundle_sha256": "4d218ea3aa09579384f166d71d636d32e27d05d2f1b6521889d455c78d3f0dc9",
+  "query_selection_sha256": "526e73882604a4ebdb6632c3f3b0bfcf42ef842953299d5ee82a29fad1bddefb",
+  "queries_with_future_only_original_edge": 32,
+  "queries_with_later_original_edge_contribution": 121,
+  "queries_with_future_original_attribute_source": 174,
+  "changed_social_text_queries": 35,
+  "total_causal_neighbors": 2048,
+  "event_timestamp_violations": 0,
+  "elapsed_seconds": 170.0948987007141,
+  "script_sha256": "25be8de99933120d929c7685bf39e3220f1182328dbf5da1f5d554fb361b8a3f",
+  "upstream_world_sha256": "7b251f5237b7b87fa70f7061ec26c1a88031798752048210c8dc6f7803d71f5c",
+  "limitation": "Filtered evidence condition, not verbatim official graph. Fixed benchmark membership and modern address metadata retained; not a fully historical map simulation."
+}
