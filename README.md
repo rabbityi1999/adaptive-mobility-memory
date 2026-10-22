@@ -41,3 +41,15 @@ timeout --signal=TERM --kill-after=10s 960s python scripts/build_city_join.py \
 ```
 
 Inputs are the frozen raw-city CSV, seed responses and `chunk001` through `chunk017` (with terminal `run_result.json` and `parsed_responses.jsonl`). The source and upstream checksums are pinned in the script. Outputs are `Tokyo_addr_dict.json`, the address-enriched `Tokyo_filtered.csv`, and `result.json` with counts, checksums, resource measurements and input manifests. Raw inputs and enriched check-ins stay outside Git. A passing join does not establish geographic correctness; session construction, prediction and ablations remain separate steps.
+
+## Official session checkpoint
+
+`scripts/build_session_checkpoint.py` runs the frozen official `get_dataset` loader and the prefix of `get_trajectories` through session grouping, unique session IDs and address normalization. Source hashes are required. An independent chronological scan verifies every session against the anchored 72-hour rule. The manifest records per-user 70/10/20 session partitions, the first 80% used as LLM history, and test sessions with at least four stays. Users with fewer than three sessions are marked excluded. This stage does not construct the prediction dictionaries, apply the final 200-query selection or build CKE.
+
+```bash
+timeout --signal=TERM --kill-after=10s 2400s python scripts/build_session_checkpoint.py \
+  --source "$JOIN_DIR/Tokyo_filtered.csv" \
+  --upstream "$AGENTMOVE" --output "$NEW_SESSION_DIR"
+```
+
+Requires Linux, pandas 2.1.4, NumPy 1.26.4, 32 GiB available memory and 5 GiB free disk. It uses two CPU affinity cores at low priority, a 16 GiB address-space limit and 1,800 CPU seconds; no GPU or model calls. The output directory must not exist. `status.json` records progress, `session_rows.pkl` preserves the DataFrame checkpoint, `session_manifest.csv` records boundaries, and `result.json` reports the successful audit and checksums. Only a result with `official_session_checkpoint_pass` is accepted. Pickle is an executable serialization format: load only this trusted, checksum-verified local checkpoint. Checkpoints and per-user manifests remain outside Git.
