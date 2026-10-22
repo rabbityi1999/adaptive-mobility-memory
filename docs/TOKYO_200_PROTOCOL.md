@@ -43,3 +43,11 @@ Report per condition Acc@1, Acc@5, strict NDCG@5 on the frozen manifest, alongsi
 Once outputs are complete, compute paired differences and user-level bootstrap intervals on the same200 users, plus discordant counts for Acc@1. No significance or improvement claim from partial progress. Report shared and condition-specific token/time costs. Historical five-query engineering checks and memory-pilot outputs remain separate.
 
 The main paper uses GPT-4o-mini; current Llama3 results are a substitute-model framework study. Paper/code filtering and trajectory-count discrepancies, present-day map metadata and local transport differences remain disclosed in WORK_LOG. This protocol does not resolve them or justify paper-level equivalence.
+
+## Analysis implementation fixed on 2026-10-23
+
+While inference was still running (144–147/200 queries), the analysis implementation was fixed without reading interim performance. This is a dated implementation decision, not a claim of preregistration before model outputs existed. Use `scripts/validate_llama3_results.py` only after completed status and exit0. It verifies600 expected result files against the frozen query list and labels, recomputes four metrics independently from saved predictions, and compares them with the runner's final report.
+
+For all three condition pairs, use paired user bootstrap with seed20261023 and10,000 draws; report percentile95% intervals for Acc@1, Acc@5 and NDCG@5 differences. Report exact two-sided discordance tests for Acc@1 and Holm-adjusted p-values across the three pairs. The metric confidence intervals are descriptive, not multiplicity-adjusted simultaneous intervals. The ordered cohort is not a random population sample; bootstrap uncertainty assumes exchangeable users conditional on this cohort. Report effect sizes and discordant counts regardless of p-values. No tuning, selective subgroup claims or significance claims from partial data.
+
+Audit per-stage successful call counts, token totals, clipping and time, retaining WKG separately. Distinguish an output-score recomputation from repeating model inference. Synthetic rank6/empty/invalid extraction and failure-denominator checks passed; an attempted analysis of the active run was correctly rejected before reading predictions, with no summary written.

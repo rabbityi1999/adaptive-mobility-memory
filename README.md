@@ -110,3 +110,13 @@ python scripts/run_llama3_baseline.py --launch --preflight-only \
 After `preflight_pass` and exit0, use the same command with a **different new output directory** and omit `--preflight-only` to run200 queries in all three conditions. `--include-official-cke` labels the static graph as a non-causal diagnostic. The default includes causal-CKE AgentMove and LLM-ZS. WKG is cached/shared across framework conditions; its failure does not suppress an otherwise runnable LLM-ZS query.
 
 The runner verifies inputs, prior weight sizes/mtimes and model metadata, uses local-only HF FP16/greedy decoding, and disables network. It requires at least32GiB available RAM and19GiB free on a GPU below10% utilization, checks again before model loading, takes a cooperative GPU lock and caps its CUDA allocator at80%. CUDA virtual mappings preclude a meaningful process address-space cap here; host RAM is checked, not claimed to be hard limited. The supervisor enforces a six-hour timeout and records `exit.json`. Monitor `status.json`, `run.log`, calls and error files; never duplicate an active run. Outputs and failed-query placeholders retain the fixed200 denominator. Completion is not established by launch success. Keep raw outputs local; publish aggregate metrics only after checking all planned conditions and failures.
+
+After successful completion, independently recompute metrics and paired comparisons (Python + NumPy, no model calls):
+
+```bash
+python scripts/validate_llama3_results.py --self-test
+python scripts/validate_llama3_results.py --run "$COMPLETED_RUN" \
+  --bundle "$NEW_CAUSAL_DIR/causal_bundle.json" --output "$NEW_SUMMARY_JSON"
+```
+
+Unfinished or failed jobs are rejected before performance is read. The output path must not exist. The validator checks the fixed600 result files and labels, preserves200 users per condition, compares independently computed scores with the runner, and reports paired bootstrap intervals, exact Acc@1 discordance tests with three-pair Holm adjustment and separate WKG costs. See the dated analysis section in the protocol. It does not rerun the model or establish paper-level equivalence.
