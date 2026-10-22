@@ -1,0 +1,491 @@
+{
+  "selected_on_validation": "mlp_ensemble",
+  "test_windows": 265,
+  "regions": 112,
+  "seed_mean_and_std": {
+    "previous_day_asof": {
+      "order_count": {
+        "MAE": {
+          "mean": 0.8038423742138365,
+          "sample_std": 0.0
+        },
+        "RMSE": {
+          "mean": 1.5148824638088052,
+          "sample_std": 0.0
+        },
+        "WAPE": {
+          "mean": 0.7743844136664426,
+          "sample_std": 0.0
+        },
+        "positive_target_MAE": {
+          "mean": 1.44335956893299,
+          "sample_std": 0.0
+        },
+        "bias": {
+          "mean": -0.00042817834681042226,
+          "sample_std": 0.0
+        }
+      },
+      "start_cohort_energy_kwh": {
+        "MAE": {
+          "mean": 37.42999506102335,
+          "sample_std": 0.0
+        },
+        "RMSE": {
+          "mean": 68.25535961702231,
+          "sample_std": 0.0
+        },
+        "WAPE": {
+          "mean": 0.8654489696725638,
+          "sample_std": 0.0
+        },
+        "positive_target_MAE": {
+          "mean": 69.79411711040197,
+          "sample_std": 0.0
+        },
+        "bias": {
+          "mean": -0.35912640766309534,
+          "sample_std": 0.0
+        }
+      }
+    },
+    "previous_week_asof": {
+      "order_count": {
+        "MAE": {
+          "mean": 0.8520538522012578,
+          "sample_std": 0.0
+        },
+        "RMSE": {
+          "mean": 1.6292272578654545,
+          "sample_std": 0.0
+        },
+        "WAPE": {
+          "mean": 0.8208291126657894,
+          "sample_std": 0.0
+        },
+        "positive_target_MAE": {
+          "mean": 1.5058550179721581,
+          "sample_std": 0.0
+        },
+        "bias": {
+          "mean": 0.05757665094339623,
+          "sample_std": 0.0
+        }
+      },
+      "start_cohort_energy_kwh": {
+        "MAE": {
+          "mean": 38.788789777488056,
+          "sample_std": 0.0
+        },
+        "RMSE": {
+          "mean": 71.09878041031007,
+          "sample_std": 0.0
+        },
+        "WAPE": {
+          "mean": 0.896866753336272,
+          "sample_std": 0.0
+        },
+        "positive_target_MAE": {
+          "mean": 70.84266729574668,
+          "sample_std": 0.0
+        },
+        "bias": {
+          "mean": 2.1369789481905146,
+          "sample_std": 0.0
+        }
+      }
+    },
+    "training_hour_of_week_mean": {
+      "order_count": {
+        "MAE": {
+          "mean": 0.6777242310456254,
+          "sample_std": 0.0
+        },
+        "RMSE": {
+          "mean": 1.2471639173650462,
+          "sample_std": 0.0
+        },
+        "WAPE": {
+          "mean": 0.6528880513410158,
+          "sample_std": 0.0
+        },
+        "positive_target_MAE": {
+          "mean": 1.2241644088267378,
+          "sample_std": 0.0
+        },
+        "bias": {
+          "mean": -0.19150628841192163,
+          "sample_std": 0.0
+        }
+      },
+      "start_cohort_energy_kwh": {
+        "MAE": {
+          "mean": 30.420900497574536,
+          "sample_std": 0.0
+        },
+        "RMSE": {
+          "mean": 54.854765123106475,
+          "sample_std": 0.0
+        },
+        "WAPE": {
+          "mean": 0.7033860664211815,
+          "sample_std": 0.0
+        },
+        "positive_target_MAE": {
+          "mean": 56.04232510802687,
+          "sample_std": 0.0
+        },
+        "bias": {
+          "mean": -7.691854306011973,
+          "sample_std": 0.0
+        }
+      }
+    },
+    "ridge_ar": {
+      "order_count": {
+        "MAE": {
+          "mean": 0.6734590011774726,
+          "sample_std": 0.0
+        },
+        "RMSE": {
+          "mean": 1.2000675800881142,
+          "sample_std": 0.0
+        },
+        "WAPE": {
+          "mean": 0.6487791269591276,
+          "sample_std": 0.0
+        },
+        "positive_target_MAE": {
+          "mean": 1.1707299826965676,
+          "sample_std": 0.0
+        },
+        "bias": {
+          "mean": -0.11742384470026114,
+          "sample_std": 0.0
+        }
+      },
+      "start_cohort_energy_kwh": {
+        "MAE": {
+          "mean": 30.101154694411733,
+          "sample_std": 0.0
+        },
+        "RMSE": {
+          "mean": 52.66389788704012,
+          "sample_std": 0.0
+        },
+        "WAPE": {
+          "mean": 0.695992966971042,
+          "sample_std": 0.0
+        },
+        "positive_target_MAE": {
+          "mean": 53.69586132951348,
+          "sample_std": 0.0
+        },
+        "bias": {
+          "mean": -5.093667708111513,
+          "sample_std": 0.0
+        }
+      }
+    },
+    "mlp": {
+      "order_count": {
+        "MAE": {
+          "mean": 0.6877656447993038,
+          "sample_std": 0.00952909158247337
+        },
+        "RMSE": {
+          "mean": 1.3020273619256713,
+          "sample_std": 0.031768969559464164
+        },
+        "WAPE": {
+          "mean": 0.6625614830379069,
+          "sample_std": 0.00917988430889125
+        },
+        "positive_target_MAE": {
+          "mean": 1.3850134094543136,
+          "sample_std": 0.05275951800540304
+        },
+        "bias": {
+          "mean": -0.3187337747030598,
+          "sample_std": 0.057272282682016756
+        }
+      },
+      "start_cohort_energy_kwh": {
+        "MAE": {
+          "mean": 30.3092255823902,
+          "sample_std": 0.3465003279946916
+        },
+        "RMSE": {
+          "mean": 57.50318567265551,
+          "sample_std": 1.413277287326474
+        },
+        "WAPE": {
+          "mean": 0.7008039410394661,
+          "sample_std": 0.008011712300931614
+        },
+        "positive_target_MAE": {
+          "mean": 61.91571044381038,
+          "sample_std": 2.143736236114229
+        },
+        "bias": {
+          "mean": -13.855330280186722,
+          "sample_std": 2.571876939099227
+        }
+      }
+    },
+    "gru": {
+      "order_count": {
+        "MAE": {
+          "mean": 0.6957427551851834,
+          "sample_std": 0.0005938804270612485
+        },
+        "RMSE": {
+          "mean": 1.2351396151798681,
+          "sample_std": 0.0013710112322350178
+        },
+        "WAPE": {
+          "mean": 0.6702462607344839,
+          "sample_std": 0.0005721168242064384
+        },
+        "positive_target_MAE": {
+          "mean": 1.1886446636905728,
+          "sample_std": 0.0022704901093356473
+        },
+        "bias": {
+          "mean": -0.1496419064868373,
+          "sample_std": 0.0025588029090303902
+        }
+      },
+      "start_cohort_energy_kwh": {
+        "MAE": {
+          "mean": 31.03578570517567,
+          "sample_std": 0.014448844519754363
+        },
+        "RMSE": {
+          "mean": 54.00988927019901,
+          "sample_std": 0.03240292966948108
+        },
+        "WAPE": {
+          "mean": 0.7176033210192042,
+          "sample_std": 0.00033408333562947066
+        },
+        "positive_target_MAE": {
+          "mean": 54.16250609301417,
+          "sample_std": 0.05343745529014167
+        },
+        "bias": {
+          "mean": -5.894748526790483,
+          "sample_std": 0.07916904849891568
+        }
+      }
+    },
+    "lstm": {
+      "order_count": {
+        "MAE": {
+          "mean": 0.6989480366651226,
+          "sample_std": 0.0016101231648752434
+        },
+        "RMSE": {
+          "mean": 1.2430495605214134,
+          "sample_std": 0.004145474632174378
+        },
+        "WAPE": {
+          "mean": 0.6733340800621302,
+          "sample_std": 0.0015511178845008114
+        },
+        "positive_target_MAE": {
+          "mean": 1.1935358276975438,
+          "sample_std": 0.005311669134551925
+        },
+        "bias": {
+          "mean": -0.15249236324869078,
+          "sample_std": 0.007051770126993551
+        }
+      },
+      "start_cohort_energy_kwh": {
+        "MAE": {
+          "mean": 31.168098427937768,
+          "sample_std": 0.06385528324853604
+        },
+        "RMSE": {
+          "mean": 54.323322395243565,
+          "sample_std": 0.14625078587091317
+        },
+        "WAPE": {
+          "mean": 0.7206626297207507,
+          "sample_std": 0.001476449275654379
+        },
+        "positive_target_MAE": {
+          "mean": 54.39787526809198,
+          "sample_std": 0.16914309927950794
+        },
+        "bias": {
+          "mean": -6.043328020037555,
+          "sample_std": 0.27755356248856633
+        }
+      }
+    }
+  },
+  "selected_model_metrics": {
+    "metrics": {
+      "order_count": {
+        "all_24_steps": {
+          "MAE": 0.6638758705939687,
+          "RMSE": 1.250622795066849,
+          "WAPE": 0.6395471839861617,
+          "positive_target_MAE": 1.3286901755177143,
+          "bias": -0.31873377454651064
+        },
+        "lead_hours": {
+          "1": {
+            "MAE": 0.6743142320927105,
+            "RMSE": 1.278292612385245,
+            "WAPE": 0.644624163639374,
+            "positive_target_MAE": 1.344862701329672,
+            "bias": -0.31990649954696915
+          },
+          "3": {
+            "MAE": 0.6690398645205906,
+            "RMSE": 1.2653478260105513,
+            "WAPE": 0.6420844331297656,
+            "positive_target_MAE": 1.3360640211387462,
+            "bias": -0.32187415081059945
+          },
+          "6": {
+            "MAE": 0.6735458389312947,
+            "RMSE": 1.2699003040506178,
+            "WAPE": 0.6475605098468086,
+            "positive_target_MAE": 1.365966903203105,
+            "bias": -0.3535419896153312
+          },
+          "12": {
+            "MAE": 0.66210027992484,
+            "RMSE": 1.2324970248717289,
+            "WAPE": 0.6315444243530418,
+            "positive_target_MAE": 1.3051635071933532,
+            "bias": -0.2713443441071541
+          },
+          "24": {
+            "MAE": 0.6564450218872614,
+            "RMSE": 1.2367083517159019,
+            "WAPE": 0.6432038641713352,
+            "positive_target_MAE": 1.3364352233045194,
+            "bias": -0.3409554175803978
+          }
+        }
+      },
+      "start_cohort_energy_kwh": {
+        "all_24_steps": {
+          "MAE": 29.344174447100723,
+          "RMSE": 55.402204862379286,
+          "WAPE": 0.6784902188667551,
+          "positive_target_MAE": 59.64047751870099,
+          "bias": -13.855330277777389
+        },
+        "lead_hours": {
+          "1": {
+            "MAE": 29.74813161575059,
+            "RMSE": 56.08479702397326,
+            "WAPE": 0.6821576397010944,
+            "positive_target_MAE": 60.253729302922295,
+            "bias": -14.278947106674197
+          },
+          "3": {
+            "MAE": 29.601991448186098,
+            "RMSE": 55.956833904392575,
+            "WAPE": 0.6813193604251948,
+            "positive_target_MAE": 59.8778483873189,
+            "bias": -14.066863339654548
+          },
+          "6": {
+            "MAE": 29.64050006073801,
+            "RMSE": 56.10973808960128,
+            "WAPE": 0.683535795114001,
+            "positive_target_MAE": 60.72315037505727,
+            "bias": -14.669374098112486
+          },
+          "12": {
+            "MAE": 29.200561193752808,
+            "RMSE": 54.24668259649411,
+            "WAPE": 0.6682008895083617,
+            "positive_target_MAE": 58.34569750495189,
+            "bias": -11.629601422508035
+          },
+          "24": {
+            "MAE": 29.03685672455572,
+            "RMSE": 55.15194552194939,
+            "WAPE": 0.6827264379873238,
+            "positive_target_MAE": 60.1527796118316,
+            "bias": -15.180535359547312
+          }
+        }
+      }
+    }
+  },
+  "selected_MAE_reduction_percent_vs_weekly_mean": {
+    "order_count": 2.0433621548827885,
+    "start_cohort_energy_kwh": 3.539428593047933
+  },
+  "paired_MAE": {
+    "order_count": {
+      "mean_MAE_difference": -0.013848360451656702,
+      "exploratory_95pct_interval": [
+        -0.018763459618300993,
+        -0.007919720232347187
+      ]
+    },
+    "start_cohort_energy_kwh": {
+      "mean_MAE_difference": -1.076726050473827,
+      "exploratory_95pct_interval": [
+        -1.2312229796369647,
+        -0.9264351803502081
+      ]
+    }
+  },
+  "bootstrap": {
+    "block_hours": 48,
+    "draws": 2000,
+    "seed": 20261022,
+    "caution": "Exploratory moving-block interval from 265 overlapping origins in a short test period; not IID confidence or causal evidence"
+  },
+  "test_tuning": false,
+  "prior_exposure": "January aggregate outcomes were seen under earlier individual-station protocols. This is not a pristine blind dataset.",
+  "best_checkpoint_at_epoch_cap": [
+    "gru_seed29",
+    "lstm_seed17",
+    "lstm_seed29",
+    "lstm_seed43"
+  ],
+  "interpretation": "MAE不能单独代表全部精度。验证选定模型的订单/电量RMSE为1.2506/55.4022，星期小时均值为1.2472/54.8548，Ridge为1.2001/52.6639。验证选定模型在正需求小时的MAE为1.3287/59.6405，均值基线为1.2242/56.0423；这项指标须与全体小时MAE一起判断。验证选定模型的平均有符号误差为-0.3187/-13.8553（负数表示低估）；WAPE为0.6395/0.6785（比例，不是准确率）。以上是当前短时间测试与轻量配置下的结果。",
+  "verification": {
+    "validation": {
+      "verified_at": "2026-10-22T14:24:38.968754+00:00",
+      "passed": true,
+      "split": "validation",
+      "metric_values_recomputed": 1020,
+      "methods": 17,
+      "source_and_data_hashes_unchanged": true,
+      "saved_weight_reinference_origins_per_model": 3,
+      "reinference_max_abs_difference": 0.00018310546875,
+      "future_completion_adversarial_isolation": true,
+      "selection_matches_validation_minimum": true,
+      "test_scored": false
+    },
+    "test": {
+      "verified_at": "2026-10-22T14:25:22.802386+00:00",
+      "passed": true,
+      "split": "test",
+      "metric_values_recomputed": 1020,
+      "methods": 17,
+      "source_and_data_hashes_unchanged": true,
+      "saved_weight_reinference_origins_per_model": 3,
+      "reinference_max_abs_difference": 0.000244140625,
+      "future_completion_adversarial_isolation": true,
+      "selection_matches_validation_minimum": true,
+      "test_scored": true
+    }
+  },
+  "seal_sha256": "482925b6bfb71fd211a31ac5b585568e0112ddbe2d8d17fc1dfd6a58e84401df",
+  "configuration_sha256": "6fb752d75e1d054a32514047d92388a0daba04d2e74df9ce264a5bffc82527d8",
+  "run_directory_name": "sequence_baselines_v1"
+}
