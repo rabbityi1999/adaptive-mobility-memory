@@ -1,0 +1,41 @@
+{
+  "status": "official_session_checkpoint_pass",
+  "checked_at": 1792664683.465205,
+  "checkins": 1030105,
+  "users": 12464,
+  "pois": 83190,
+  "sessions": 277509,
+  "split_sessions": {
+    "train": 187085,
+    "test": 58199,
+    "validation": 27920,
+    "excluded_user": 4305
+  },
+  "eligible_test_sessions": 10917,
+  "users_with_eligible_test": 4041,
+  "llm_history_sessions": 215005,
+  "temporal_boundary_violations": 0,
+  "anchored_window_reference_match": true,
+  "model_calls": 0,
+  "prediction_dictionaries_completed": false,
+  "collective_graph_completed": false,
+  "source_sha256": "088b29d30d3f1177c3556e00a24cff4a374441ac7f644fa5e5daf911a25dd184",
+  "upstream_sha256": {
+    "processing/data.py": "de6bd5b410f3c4e7f402869a16a4e0d3e419a9c52d24d4bf4e754def071a07b8",
+    "utils.py": "8eb71891071e804bf69cbdf6aa371c267d6c2e73e030512e8fb91824a70abff4"
+  },
+  "script_sha256": "9a1c0b2edb376152742dc7a1acb0fa6dddfff37414846242e0a1f5322fe097b6",
+  "checkpoint_sha256": "da1b75d8b62de6f9697ccee0d612d108d5a516afbcedf5263035c103de5d940a",
+  "checkpoint_bytes": 163687130,
+  "manifest_sha256": "64c95b59c36ff9e86c098ed5d7e1bcdfcc985c9176651cf77c78194473c34e48",
+  "prefix_ast_sha256": "0dae5209df085054e905896db285d1f7ead6eda042e2221d29e8f438b675f28f",
+  "elapsed_seconds": 348.22834968566895,
+  "peak_rss_kib": 1508576,
+  "limits": {
+    "cpu_cores": 2,
+    "address_space_gib": 16,
+    "cpu_seconds": 1800
+  },
+  "pandas_version": "2.1.4",
+  "numpy_version": "1.26.4"
+}
