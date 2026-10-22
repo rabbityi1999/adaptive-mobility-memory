@@ -4,6 +4,8 @@ Research on adaptive personal and collective memory for next-location prediction
 
 **[工作文档：论文指标、复现结果与后续计划](docs/WORK_LOG.md)** — the maintained project record. It separates published AgentMove scores, accepted preprocessing results, engineering checks and exploratory memory experiments.
 
+The next prediction comparison uses **local Meta-Llama-3-8B-Instruct** for AgentMove and LLM-ZS, then the same model for ablations. See [the frozen model choice and planned settings](configs/tokyo_llama3_baseline.json). This is a substitute-model framework reproduction; the paper's main table uses GPT-4o-mini.
+
 This repository is being populated prospectively from an existing research workspace. It currently contains address-processing verification code, **not a complete AgentMove reproduction** or a validated memory-routing method.
 
 ## Final Tokyo address audit
@@ -55,3 +57,16 @@ timeout --signal=TERM --kill-after=10s 2400s python scripts/build_session_checkp
 ```
 
 Requires Linux, pandas 2.1.4, NumPy 1.26.4, 32 GiB available memory and 5 GiB free disk. It uses two CPU affinity cores at low priority, a 16 GiB address-space limit and 1,800 CPU seconds; no GPU or model calls. The output directory must not exist. `status.json` records progress, `session_rows.pkl` preserves the DataFrame checkpoint, `session_manifest.csv` records boundaries, and `result.json` reports the successful audit and checksums. Only a result with `official_session_checkpoint_pass` is accepted. Pickle is an executable serialization format: load only this trusted, checksum-verified local checkpoint. Checkpoints and per-user manifests remain outside Git.
+
+## Prediction inputs and collective graph
+
+`scripts/prepare_prediction_inputs.py` resumes the verbatim Dataset suffix from the trusted session checkpoint, audits every generated historical/context/target field, executes the frozen SocialWorld graph builder, and uses the official Agent sampler for 200 users with 3–50 eligible test sessions and one query each. It does not run model inference. The input pickle and upstream source hashes are pinned. Unused API imports are excluded using AST extraction; the executed Dataset, graph and selection statements are preserved.
+
+```bash
+python scripts/prepare_prediction_inputs.py --launch \
+  --checkpoint "$SESSION_DIR" --upstream "$AGENTMOVE" --output "$NEW_INPUT_DIR"
+```
+
+Use Linux with pandas2.1.4, NumPy1.26.4 and NetworkX3.3; require48GiB available RAM and10GiB disk. `--launch` creates a new directory, detaches a worker with two CPU affinity cores, nice19,24GiB address-space limit,7200 CPU seconds and9000 wall seconds. Monitor `launch.json`, `status.json`, `run.log` and the supervisor/worker PIDs. Do not repeat the launch for an active run. An absent result is not success; only accept `prediction_inputs_and_graph_pass` after the worker exits.
+
+Outputs include official processed JSON dictionaries, `Tokyo_graph.gml`, the frozen query selection, a descriptive trajectory-count comparison and aggregate `result.json`. Keep raw outputs outside Git. Seed1234 is an explicit reproducibility setting for the upstream DL training sample; the Agent's final selection is ordered. The graph retains upstream inclusion of target-user history, undirected edges and unsorted neighbors. The audit counts selected queries exposed to later collective-history records across users: it does not silently repair this official behavior or claim globally causal evaluation. Resolve/document this and the paper/code filtering differences before comparing scores. Reload the saved graph consistently for subsequent conditions because serialization can affect neighbor iteration order.
