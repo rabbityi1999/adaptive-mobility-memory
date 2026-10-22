@@ -1,0 +1,52 @@
+{
+  "status": "completed_chunk_audit_pass",
+  "checked_at": 1792642702.2575476,
+  "prefix_rows": 3090,
+  "selected_rows": 3090,
+  "seed_rows": 100,
+  "partial_final_line_ignored": {
+    "raw": false,
+    "parsed": false
+  },
+  "request_matches": 3090,
+  "duplicate_pois": 0,
+  "seed_overlap": 0,
+  "prior_completed_rows": 80100,
+  "prior_chunk_overlap": 0,
+  "join_error_count": 0,
+  "join_error_examples": [],
+  "finish_reasons": {
+    "stop": 3090
+  },
+  "input_tokens": 571980,
+  "output_tokens": 150374,
+  "inference_seconds": 4629.759221062064,
+  "diagnostic_counts": {
+    "strict_json": 0,
+    "schema_ok": 2728,
+    "non_string_fields": 362,
+    "empty_fields": 1292,
+    "non_verbatim_fields": 159,
+    "needs_review": 3090
+  },
+  "normalization": {
+    "before_null_cells": 405,
+    "after_null_cells": 0,
+    "nonstring_cells": [],
+    "nonstring_count": 0
+  },
+  "full_chunk_complete": true,
+  "no_new_model_calls": true,
+  "full_unique_poi_coverage": {
+    "expected": 83190,
+    "actual": 83190,
+    "missing": 0,
+    "extra": 0
+  },
+  "audit_script_sha256": "c7250fcbbc258c8d3eebe5d9852ee1d59cf3ad0ecab6552624b721bb1146e7f4",
+  "upstream_revision": "61a3e47667f2862c81478bfa442595b766f2f4d6",
+  "stage": "address_structure_and_id_coverage_only",
+  "previous_batch_rows_already_audited": 80100,
+  "prediction_evaluation_completed": false,
+  "provider_equivalence_verified": false
+}

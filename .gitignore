@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.venv/
+data/
+models/
+outputs/
+*.jsonl
+*.safetensors
+*.bin
+*.pem
+*.key
