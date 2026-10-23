@@ -1,0 +1,43 @@
+{
+  "status": "paper_order_graph_and_causal_bundle_pass",
+  "model_calls": 0,
+  "queries": 200,
+  "selected_users": 200,
+  "cutoff_rule": "last observed context check-in; event timestamps <= cutoff",
+  "fixed_offline_membership": true,
+  "map_historical_validity_not_established": true,
+  "retained_upstream_neighbor_limit": 11,
+  "independent_graph_checks": [
+    0,
+    99,
+    199
+  ],
+  "graph_reload_order_matched": true,
+  "unfiltered_retrieval_matches_official_all_queries": true,
+  "bundle_sha256": "5eff847b69c2b3f15809af9270183ddd198fb3c0aea2d024bd11ba93bc619c23",
+  "query_selection_sha256": "fc9baee539c4456555dd537ab74623d9448e2385bcd9129a1aeaa89357a0a71e",
+  "input_result_sha256": "4bedb61d371a670701454b8b23494a986a82acbbf3a8fa78ab6c9d94cbe9e81f",
+  "collective_users": 7360,
+  "collective_history_records": 556513,
+  "graph_nodes": 56240,
+  "graph_edges": 277936,
+  "graph_sha256": "51c202af5e3dce3384c7029a46cdaee28f20c4885c606bd043098e76ddf4b7a8",
+  "full_city_proxy_used": true,
+  "weighted_edges_and_node_attributes_checked": true,
+  "queries_with_future_only_original_edge": 44,
+  "queries_with_later_original_edge_contribution": 119,
+  "queries_with_future_original_attribute_source": 116,
+  "changed_social_text_queries": 46,
+  "total_causal_neighbors": 1995,
+  "event_timestamp_violations": 0,
+  "elapsed_seconds": 230.5964057445526,
+  "script_sha256": "d0c52ac43558be7739a9e3fb1c10e0b67201a6f738aa72248477689e843f903f",
+  "upstream_world_sha256": "7b251f5237b7b87fa70f7061ec26c1a88031798752048210c8dc6f7803d71f5c",
+  "peak_rss_kib": 2741900,
+  "limits": {
+    "cpu_cores": 2,
+    "address_space_gib": 24,
+    "cpu_seconds": 1800
+  },
+  "limitation": "Filtered evidence condition, not verbatim official graph. Fixed benchmark membership and modern address metadata retained; not a fully historical map simulation."
+}
