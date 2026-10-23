@@ -108,3 +108,13 @@ python scripts/validate_ablation_results.py \
 The independent validator checks1,200 files, exact source-result reuse, labels and the frozen prompt manifest, and recomputes all metrics and six predefined contrasts. It separates new execution costs from historical reused full/WKG costs. Keep `ablation_adapter.py` and `validate_llama3_results.py` beside it. The unfinished-run gate was exercised successfully: it exited1 before reading performance and wrote no summary. Analysis implementation was completed after launch with no interim accuracy read, while the contrast family and statistical settings were already fixed in the preceding protocol.
 
 Retention changes from deleting sections are visible before inference: WKG alone is fully retained in199 cases and partial in1; STM+WKG retains WKG fully182, partially13 and loses5; full retains it fully172, partially18 and loses10. CKE alone preserves all193 nonempty payloads (7 empty source). This verifies a prompt-length interaction, not an accuracy improvement. The adapter does not change the clipping rule in response to these diagnostics.
+
+## Independent synthetic acceptance checks — 2026-10-23 12:25 CST
+
+While GPU0 continued inference (175/200 users,875 calls at the latest check), four local tests passed without reading real partial predictions or changing runner/validator code. The synthetic completed fixture contains200 users per arm with analytically known rank-one hits, one failed new prediction and200 reused full outputs. It checks exact expected scores, failure retention in the200 denominator, six planned contrasts and a known exact/Holm p-value. Other tests ensure unfinished jobs are rejected before metadata/scores are read, changed labels fail, and modified reused output fails even if its score is unchanged. These are software acceptance checks, not additional empirical results.
+
+```bash
+python -m unittest discover -s tests -p test_ablation_validation.py -v
+```
+
+Requires Python and NumPy; fixtures are generated in an automatically cleaned local temporary directory. No model, network, server credentials or real trajectories are used. All four tests passed in23.60seconds. The earlier implementation commit1b35112 was subsequently pushed and independently verified on remote main.
