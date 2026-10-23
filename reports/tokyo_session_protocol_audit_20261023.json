@@ -1,0 +1,108 @@
+{
+  "status": "session_protocol_count_audit_pass",
+  "verification": "ANALYZED",
+  "manifest_sha256": "64c95b59c36ff9e86c098ed5d7e1bcdfcc985c9176651cf77c78194473c34e48",
+  "script_sha256": "ca7ca34aea62c42957044c01670f32041e32b63e4eb3a9703bd4f5acfd183853",
+  "frozen_selection_sha256": "526e73882604a4ebdb6632c3f3b0bfcf42ef842953299d5ee82a29fad1bddefb",
+  "frozen_selection_exact_match": true,
+  "raw_users": 12464,
+  "raw_sessions": 277509,
+  "raw_checkins": 1030105,
+  "paper_table4_trajectories": 112942,
+  "variants": {
+    "fixed_code_user3_split_then_test_length4": {
+      "counts": {
+        "kept_users": 9282,
+        "kept_sessions": 273204,
+        "split_sessions": {
+          "train": 187085,
+          "validation": 27920,
+          "test": 58199
+        },
+        "eligible_test_sessions": 10917,
+        "users_with_3_to_50_eligible_test_sessions": 1210,
+        "selected_queries": 200,
+        "selection_sha256": "54eabf30295eec86f23918b1fd2a7bf00cfc0e68dc2a5828d04c2c56503ce83b"
+      },
+      "versus_fixed": {
+        "shared_users": 200,
+        "shared_queries": 200,
+        "identical_ordered_selection": true,
+        "shared_queries_with_changed_history": 0
+      }
+    },
+    "user5_only_split_then_test_length4": {
+      "counts": {
+        "kept_users": 8217,
+        "kept_sessions": 269558,
+        "split_sessions": {
+          "train": 184955,
+          "validation": 27469,
+          "test": 57134
+        },
+        "eligible_test_sessions": 10649,
+        "users_with_3_to_50_eligible_test_sessions": 1210,
+        "selected_queries": 200,
+        "selection_sha256": "54eabf30295eec86f23918b1fd2a7bf00cfc0e68dc2a5828d04c2c56503ce83b"
+      },
+      "versus_fixed": {
+        "shared_users": 200,
+        "shared_queries": 200,
+        "identical_ordered_selection": true,
+        "shared_queries_with_changed_history": 0
+      }
+    },
+    "paper_order_user5_then_length4_then_split": {
+      "counts": {
+        "kept_users": 7360,
+        "kept_sessions": 88611,
+        "split_sessions": {
+          "train": 58524,
+          "validation": 9055,
+          "test": 21032
+        },
+        "eligible_test_sessions": 21032,
+        "users_with_3_to_50_eligible_test_sessions": 2409,
+        "selected_queries": 200,
+        "selection_sha256": "a523777f9f0cd096222a12cbb465777eefc86fea360db5aeabf70dac4282d9c5"
+      },
+      "versus_fixed": {
+        "shared_users": 178,
+        "shared_queries": 22,
+        "identical_ordered_selection": false,
+        "shared_queries_with_changed_history": 20
+      }
+    },
+    "sensitivity_length4_then_user5_then_split": {
+      "counts": {
+        "kept_users": 4392,
+        "kept_sessions": 81637,
+        "split_sessions": {
+          "train": 55114,
+          "validation": 8459,
+          "test": 18064
+        },
+        "eligible_test_sessions": 18064,
+        "users_with_3_to_50_eligible_test_sessions": 2409,
+        "selected_queries": 200,
+        "selection_sha256": "a523777f9f0cd096222a12cbb465777eefc86fea360db5aeabf70dac4282d9c5"
+      },
+      "versus_fixed": {
+        "shared_users": 178,
+        "shared_queries": 22,
+        "identical_ordered_selection": false,
+        "shared_queries_with_changed_history": 20
+      }
+    }
+  },
+  "model_calls": 0,
+  "elapsed_seconds": 1.330613136291504,
+  "caveats": [
+    "Paper-order reconstruction uses existing anchored72h sessions; it does not infer another window rule.",
+    "Paper filtering order is audited separately; no thresholds are searched to fit Table4.",
+    "70/10/20 split, first200 ordered users, first eligible test session; agent-stage3to50 filter unchanged.",
+    "History comparison uses preceding80percent session membership, not prompt text or score.",
+    "No predictions, target venue IDs, raw trajectories, or user identifiers are exported.",
+    "Counts do not establish the authors actual unpublished preprocessing or a new model result."
+  ]
+}
