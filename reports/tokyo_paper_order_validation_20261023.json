@@ -1,0 +1,20 @@
+{
+  "status": "serialized_paper_order_inputs_reference_pass",
+  "verification": "ANALYZED",
+  "checked_inputs": 200,
+  "checked_artifacts": 6,
+  "model_calls": 0,
+  "result_sha256": "4bedb61d371a670701454b8b23494a986a82acbbf3a8fa78ab6c9d94cbe9e81f",
+  "validator_sha256": "fd349cfe202dde99afd5ae00ab604e29f8cd8762806192966e1f41a8fb65d81b",
+  "checks": [
+    "saved artifact hashes",
+    "raw-user count before filtering",
+    "retained session order",
+    "first eligible test query per selected user",
+    "all input and truth fields",
+    "target placeholders",
+    "context cutoff timestamps",
+    "personal time boundary"
+  ],
+  "limitation": "No collective graph, rendered prompts, or new predictions verified."
+}

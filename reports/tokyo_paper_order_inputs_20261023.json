@@ -1,0 +1,69 @@
+{
+  "status": "paper_order_selected_inputs_pass",
+  "verification": "ANALYZED",
+  "condition": "paper_order_user5_then_length4_then_split",
+  "model_calls": 0,
+  "selected_users": 200,
+  "selected_queries": 200,
+  "total_eligible_test_sessions": 21032,
+  "retained_users": 7360,
+  "retained_sessions": 88611,
+  "retained_checkins": 687542,
+  "split_sessions": {
+    "train": 58524,
+    "test": 21032,
+    "validation": 9055
+  },
+  "selected_input_audits_passed": 200,
+  "personal_time_boundary_violations": 0,
+  "llm_history_sessions": 67579,
+  "llm_history_records": 556513,
+  "collective_graph_completed": false,
+  "collective_time_audit_completed": false,
+  "prompt_identity_preflight_completed": false,
+  "prediction_scores_available": false,
+  "checkpoint_sha256": "da1b75d8b62de6f9697ccee0d612d108d5a516afbcedf5263035c103de5d940a",
+  "audit_sha256": "4615a4871bca4f03e1a1dc65d8389057f153c9c9b4c339a5d55657038ddb57ab",
+  "script_sha256": "08b29d786a8446433f8c5574d5d7f1ffdecf97544230d117901d43391d810173",
+  "artifacts": {
+    "test_dictionary_Tokyo_paper_order.json": {
+      "bytes": 47840310,
+      "sha256": "50cc889a5333d82ace08e3206ef91a7fc69f35449f243205372433b5d5ab794c"
+    },
+    "true_locations_Tokyo_paper_order.json": {
+      "bytes": 54245,
+      "sha256": "39d3407667ccef431e7b80f416102d336e6599fec8aa834a02be935c8a284bbb"
+    },
+    "query_selection.json": {
+      "bytes": 5804,
+      "sha256": "fc9baee539c4456555dd537ab74623d9448e2385bcd9129a1aeaa89357a0a71e"
+    },
+    "query_boundaries.json": {
+      "bytes": 25204,
+      "sha256": "151ecca6eb8c46e78e0496a1a86f8c0b8bcd6e6b2bd859b63a8b1ce23664de9e"
+    },
+    "filtered_session_rows.pkl": {
+      "bytes": 115253374,
+      "sha256": "b44b72bcd0f4d17d921156449c6aad13dea19535ec9b0b38deff63ed68d65d4f"
+    },
+    "session_manifest.csv": {
+      "bytes": 7848205,
+      "sha256": "91d408472a3eab5724504d555f29e341c68d7658ae6197408b4867baf6598f0f"
+    }
+  },
+  "elapsed_seconds": 7.817459583282471,
+  "peak_rss_kib": 1169840,
+  "limits": {
+    "cpu_cores": 2,
+    "address_space_gib": 16,
+    "cpu_seconds": 600
+  },
+  "caveats": [
+    "Separate paper-text reconstruction, not a change to the completed code baseline.",
+    "Only selected200 inputs materialized; full21032 test index preserved in manifest.",
+    "Retains current addresses and anchored72h sessions; Table4 count remains unresolved.",
+    "178 users and22 queries overlap observed baseline; not an independent holdout.",
+    "History uses preceding80percent as in LLM code; DL train is70percent.",
+    "No CKE graph or causal evidence built; do not launch model inference from this checkpoint yet."
+  ]
+}
