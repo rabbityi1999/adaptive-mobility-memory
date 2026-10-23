@@ -1,0 +1,156 @@
+{
+  "status": "reconstructed_ablation_preflight_pass",
+  "queries": 200,
+  "conditions": [
+    "recon_base",
+    "recon_stm",
+    "recon_wkg",
+    "recon_cke",
+    "recon_stm_wkg",
+    "recon_full"
+  ],
+  "prompt_variants_checked": 1200,
+  "full_identity_matches": 200,
+  "expected_new_prediction_calls": 1000,
+  "reused_full_predictions": 200,
+  "new_WKG_calls": 0,
+  "source_result_tree_sha256": "1c6ae95ec21e639bbed500c44e9aab4eac0f5316c320810d07e74c623ad8d1cc",
+  "source_run_metadata_sha256": "cbb28ea181a1b6f28cf78fbff9461ed5e1c02449583d543cf3664f03eb816cc3",
+  "source_wkg_cache_sha256": "66d7742cf9972a2d3c035737087eeeac0756fe6459242900d8412e5f05cc20c0",
+  "adapter_sha256": "789e75c5f0f5aaa236f9e35d8c4d79228ff1bb57519e4366c37a4e03bc08da21",
+  "prompt_manifest_sha256": "721cebf16b5eadc25381fecdb2b1fa71dcad0a72497a1e671656972761b1c062",
+  "retention_counts": {
+    "recon_base": {
+      "WKG": {
+        "disabled": 200
+      },
+      "CKE": {
+        "disabled": 200
+      },
+      "STM": {
+        "disabled": 200
+      },
+      "history": {
+        "full": 200
+      },
+      "output": {
+        "full": 200
+      }
+    },
+    "recon_stm": {
+      "WKG": {
+        "disabled": 200
+      },
+      "CKE": {
+        "disabled": 200
+      },
+      "STM": {
+        "full": 195,
+        "partial": 5
+      },
+      "history": {
+        "full": 200
+      },
+      "output": {
+        "full": 200
+      }
+    },
+    "recon_wkg": {
+      "WKG": {
+        "full": 199,
+        "partial": 1
+      },
+      "CKE": {
+        "disabled": 200
+      },
+      "STM": {
+        "disabled": 200
+      },
+      "history": {
+        "full": 200
+      },
+      "output": {
+        "full": 200
+      }
+    },
+    "recon_cke": {
+      "WKG": {
+        "disabled": 200
+      },
+      "CKE": {
+        "full": 193,
+        "empty_source": 7
+      },
+      "STM": {
+        "disabled": 200
+      },
+      "history": {
+        "full": 200
+      },
+      "output": {
+        "full": 200
+      }
+    },
+    "recon_stm_wkg": {
+      "WKG": {
+        "full": 182,
+        "partial": 13,
+        "missing": 5
+      },
+      "CKE": {
+        "disabled": 200
+      },
+      "STM": {
+        "full": 195,
+        "partial": 5
+      },
+      "history": {
+        "full": 200
+      },
+      "output": {
+        "full": 200
+      }
+    },
+    "recon_full": {
+      "WKG": {
+        "full": 172,
+        "partial": 18,
+        "missing": 10
+      },
+      "CKE": {
+        "full": 184,
+        "partial": 4,
+        "empty_source": 7,
+        "missing": 5
+      },
+      "STM": {
+        "full": 195,
+        "partial": 5
+      },
+      "history": {
+        "full": 200
+      },
+      "output": {
+        "full": 200
+      }
+    }
+  },
+  "source_WKG_cost": {
+    "calls": 400,
+    "input_tokens": 125002,
+    "output_tokens": 77267,
+    "inference_seconds": 2311.420026730746,
+    "clipped_calls": 0,
+    "max_new_tokens_reached": 0
+  },
+  "source_full_prediction_cost": {
+    "calls": 200,
+    "input_tokens": 411507,
+    "output_tokens": 76276,
+    "inference_seconds": 2349.8374902047217,
+    "clipped_calls": 128,
+    "max_new_tokens_reached": 0
+  },
+  "conditions_are_reconstructed": true,
+  "source_scores_not_retuned": true
+}

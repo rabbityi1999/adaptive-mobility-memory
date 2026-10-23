@@ -51,6 +51,8 @@ def arguments():
     parser.add_argument('--gpu', type=int, choices=range(4), default=0)
     parser.add_argument('--gpu-lock-dir', type=Path, default=Path('/tmp'))
     parser.add_argument('--weight-manifest', type=Path)
+    parser.add_argument('--ablation-source', type=Path,
+                        help='Completed, audited baseline run for explicit reconstructed module ablations')
     parser.add_argument('--include-official-cke', action='store_true',
                         help='Add explicitly non-causal static-graph official-code control')
     parser.add_argument('--preflight-only', action='store_true',
@@ -92,6 +94,11 @@ def preflight(args):
 
 def run(args):
     import fcntl
+    if args.ablation_source:
+        assert not args.include_official_cke and args.weight_manifest
+        import ablation_adapter as ablations
+        CONDITIONS.clear()
+        CONDITIONS.update({name: 'agent_move_v6' for name in ablations.MASKS})
     if args.include_official_cke:
         CONDITIONS['agent_move_v6_officialCKE'] = 'agent_move_v6'
     # Cooperating project jobs share this non-blocking lock; other jobs are
@@ -211,6 +218,9 @@ def run(args):
                           prompt_effective=prompt_text, prompt_sha256=hashlib.sha256(prompt_text.encode()).hexdigest(),
                           gpt_token_count_before=count, clipped=count > 2000, input_tokens=length,
                           started_at=time.time(), batch_size=1)
+            if args.ablation_source:
+                assert original == ablation_plans[self.query][self.stage]
+                record['retained_payloads'] = ablations.retention(original, prompt_text)
             append(args.output / 'call_attempts.jsonl', record)
             assert length + 1000 <= model.config.max_position_embeddings
             torch.cuda.synchronize()
@@ -249,6 +259,16 @@ def run(args):
     assert tokenizer.convert_tokens_to_ids('<|eot_id|>') == 128009
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = 'left'
+    ablation_plans, reused_full = None, None
+    if args.ablation_source:
+        status('checking_all_ablation_prompts')
+        ablation_plans, reused_full, prompt_manifest, ablation_report = ablations.prepare(
+            args.ablation_source, rows, metadata, token_count, tokenizer)
+        metadata.update(ablation_source=str(args.ablation_source), ablation=ablation_report,
+                        caveat='Explicit reconstructed module ablations with time-filtered CKE; not original Table2 scripts or paper-level replication')
+        write(args.output / 'run_metadata.json', metadata)
+        write(args.output / 'ablation_prompt_manifest.json', prompt_manifest)
+        write(args.output / 'ablation_preflight.json', ablation_report)
     if args.preflight_only:
         status('preflight_pass', model_loaded=False, model_calls=0)
         return
@@ -259,6 +279,9 @@ def run(args):
     for condition in CONDITIONS:
         (args.output / 'results' / condition).mkdir(parents=True)
         for row in rows:
+            if args.ablation_source and condition == 'recon_full':
+                write(result_path(condition, row), reused_full[ablations.key(row)])
+                continue
             write(result_path(condition, row), dict(input='', output={}, prediction=[], reason='',
                   true=row['label']['ground_stay'], execution_status='not_attempted'))
 
@@ -317,6 +340,24 @@ def run(args):
         model = AutoModelForCausalLM.from_pretrained(args.model, local_files_only=True,
                     torch_dtype=torch.float16, attn_implementation='sdpa').to('cuda:0').eval()
         for index, row in enumerate(rows):
+            if args.ablation_source:
+                from utils import extract_json
+                LocalLLM.query = ablations.key(row)
+                for condition in ablations.NEW_CONDITIONS:
+                    LocalLLM.stage = condition
+                    try:
+                        prompt = ablation_plans[LocalLLM.query][condition]
+                        answer = LocalLLM().get_response(prompt)
+                        output_json, prediction, reason = extract_json(answer, prediction_key='prediction')
+                        write(result_path(condition, row), dict(input=prompt, output=output_json,
+                              prediction=prediction, reason=reason, true=row['label']['ground_stay'],
+                              execution_status='completed'))
+                    except Exception as error:
+                        failure(condition, row, error)
+                        if systemic(error):
+                            raise
+                status('query_completed', finished_queries=index+1)
+                continue
             LocalLLM.query = row['user'] + ':' + row['trajectory']
             LocalLLM.stage = 'WKG'
             ex = copy.deepcopy(row['inputs'])

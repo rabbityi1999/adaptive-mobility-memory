@@ -58,7 +58,7 @@ Deleting a section changes prompt length and can change how much other evidence 
 
 Budget: 1,000 new prediction calls, zero new WKG generations, with 200 full predictions reused. Distinguish incremental execution cost from standalone condition cost (include historical WKG generation for any standalone WKG-enabled condition). Each condition has a fixed denominator of 200; keep empty/error outputs as misses. No correctness-based retries. Prefer GPU0 after a fresh availability check and cooperative lock; retain the established two-CPU/nice19 and six-hour execution limit.
 
-Before launch, the new runner must also verify the accepted run's terminal status, manifest, output-tree hash, source hashes, WKG cache hashes and model fingerprint evidence. A validation or launch failure is not a completed experiment; retain diagnostics and do not duplicate active jobs. At this checkpoint the runner adapter is **not yet implemented** and no ablation inference is running.
+Before launch, the new runner must also verify the accepted run's terminal status, manifest, output-tree hash, source hashes, WKG cache hashes and model fingerprint evidence. A validation or launch failure is not a completed experiment; retain diagnostics and do not duplicate active jobs. At the initial source-audit checkpoint the adapter was not implemented; the implementation and launch checkpoint below supersede that status.
 
 ## Analysis fixed for the next run
 
@@ -78,3 +78,33 @@ PYTHONHASHSEED=100 python scripts/audit_ablation_inputs.py \
 ```
 
 Inputs are trusted local completed-run artifacts, including `validated_summary.json`, the 600 predictions, `calls.jsonl` and `wkg_cache.jsonl`. The script executes only pinned pure prompt/Memory/formatter definitions through AST extraction, blocks network, and uses two CPU-affinity cores at low priority. It does not verify map accuracy or cure the outstanding paper/code filtering and trajectory-count mismatch.
+
+## Implementation and launch checkpoint — 2026-10-23 09:30 CST
+
+The [adapter](../scripts/ablation_adapter.py) and optional `--ablation-source` mode in the existing runner implement the frozen deletion rules. Default three-condition runner behavior is preserved when that option is absent. All 1,200 prompt variants passed the offline preflight; all 200 full original/effective prompt identities, tokenizer lengths and source model/software/hash checks matched the prior run. Source predictions and WKG were not modified. [Aggregate preflight](../reports/tokyo_ablation_preflight_20261023.json), [configuration](../configs/tokyo_ablation_200.json).
+
+The preflight exited0 without loading weights or making model calls. At launch GPU0 had24,121MiB free and0% utilization. Inference is now running on GPU0, supervisor1618786 / worker1618806, output `/mnt/xuyi/agentmove_ablation_200_20261023`. Its first user completed all five new conditions (5 calls) with no observed execution error. This is an initial health checkpoint, not a completed result. Full-condition files in the new directory are explicitly reused, even though their original content retains `execution_status=completed`.
+
+Run with absolute paths, a new output directory and the same accepted baseline source:
+
+```bash
+python scripts/ablation_adapter.py
+python scripts/run_llama3_baseline.py --launch --preflight-only \
+  --upstream "$PINNED_UPSTREAM" --inputs "$ACCEPTED_INPUTS" --model "$LLAMA_MODEL" \
+  --token-cache "$TOKEN_CACHE" --causal-bundle "$CAUSAL_V2_BUNDLE" \
+  --weight-manifest "$WEIGHT_MANIFEST" --ablation-source "$COMPLETED_BASELINE" \
+  --gpu 0 --output "$NEW_ABLATION_PREFLIGHT_DIR"
+```
+
+Only after `preflight_pass` plus exit0, remove `--preflight-only` and provide a **different new** output directory to launch inference. The runner repeats the gates and all identities, takes the cooperative GPU lock, preserves the existing six-hour timeout and records `status.json`, `exit.json`, a per-query prompt manifest and each successful call's retained payload spans. No WKG model calls are made. The adapter and runner must be in the same directory.
+
+After terminal completed status and exit0:
+
+```bash
+python scripts/validate_ablation_results.py \
+  --run "$COMPLETED_ABLATION_RUN" --output "$NEW_VALIDATED_SUMMARY_JSON"
+```
+
+The independent validator checks1,200 files, exact source-result reuse, labels and the frozen prompt manifest, and recomputes all metrics and six predefined contrasts. It separates new execution costs from historical reused full/WKG costs. Keep `ablation_adapter.py` and `validate_llama3_results.py` beside it. The unfinished-run gate was exercised successfully: it exited1 before reading performance and wrote no summary. Analysis implementation was completed after launch with no interim accuracy read, while the contrast family and statistical settings were already fixed in the preceding protocol.
+
+Retention changes from deleting sections are visible before inference: WKG alone is fully retained in199 cases and partial in1; STM+WKG retains WKG fully182, partially13 and loses5; full retains it fully172, partially18 and loses10. CKE alone preserves all193 nonempty payloads (7 empty source). This verifies a prompt-length interaction, not an accuracy improvement. The adapter does not change the clipping rule in response to these diagnostics.
