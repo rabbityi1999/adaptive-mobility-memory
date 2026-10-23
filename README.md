@@ -123,10 +123,15 @@ Unfinished or failed jobs are rejected before performance is read. The output pa
 
 ## Accepted Tokyo 200-query results (2026-10-23)
 
-[Results, paired uncertainty, output diagnostics and costs](docs/TOKYO_200_RESULTS.md): original-CKE AgentMove / event-time-filtered AgentMove / LLM-ZS achieved Acc@1 15.5% / 15.5% / 12.5% and Acc@5 35.5% / 36.5% / 34.5%. All 600 outputs passed independent scoring. Acc@1 differences against LLM-ZS were not statistically significant. This is a substitute-model framework result; paper-level alignment and module ablations remain open. The completed job must not be relaunched.
+[Results, paired uncertainty, output diagnostics and costs](docs/TOKYO_200_RESULTS.md): original-CKE AgentMove / event-time-filtered AgentMove / LLM-ZS achieved Acc@1 15.5% / 15.5% / 12.5% and Acc@5 35.5% / 36.5% / 34.5%. All 600 outputs passed independent scoring. Acc@1 differences against LLM-ZS were not statistically significant. This is a substitute-model framework result; paper-level alignment remains open. The completed job must not be relaunched.
 
 ## Ablation input audit and next protocol
 
 [The source audit and reconstruction protocol](docs/TOKYO_ABLATION_PROTOCOL.md) document the absence of separate ablation branches in the pinned full-agent prompt function, differences between LLM-ZS and an ablation base, exact reconstruction of400 full prompts, and verification of200 WKG cache entries. The [aggregate audit](reports/tokyo_ablation_input_audit_20261023.json) reports actual section retention after clipping. No new inference was performed. Run `scripts/audit_ablation_inputs.py` with the existing completed run, causal_v2 bundle and pinned upstream source as documented in the protocol. The next ablations will be labeled reconstructions, with an unchanged full-condition identity check before launch.
 
 The subsequent implementation passed all1,200 prompt-variant checks and launched the reconstructed ablations on GPU0 (2026-10-23). It adds1,000 prediction calls and reuses200 full predictions and the accepted WKG cache. See the protocol's launch checkpoint and [configuration](configs/tokyo_ablation_200.json). `run_llama3_baseline.py --ablation-source` enables this mode; `ablation_adapter.py` must be alongside the runner. After completion, `validate_ablation_results.py` recomputes metrics and six fixed contrasts with all200 users per condition. Initial successful calls are not final results.
+
+
+## Completion verified - 2026-10-23
+
+The GPU0 ablation job completed with exit0, 200 users and 1000 new calls. All 1200 condition outputs passed independent scoring and identity checks; 200 full outputs and WKG caches were reused. Acc@1 for base/STM/WKG/CKE/STM+WKG/full is 13.5/19.0/13.5/13.0/15.0/15.5 percent. None of the six prespecified Acc@1 contrasts survives Holm adjustment. See [final results](docs/TOKYO_ABLATION_RESULTS.md) and the aggregate JSON. This supersedes the running checkpoints above; do not relaunch inference.

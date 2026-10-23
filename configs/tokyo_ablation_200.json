@@ -1,6 +1,6 @@
 {
   "experiment": "Explicit reconstructed Tokyo module ablations",
-  "status": "running_on_gpu0",
+  "status": "completed_independently_validated",
   "model": "Meta-Llama-3-8B-Instruct",
   "n_users": 200,
   "queries_per_user": 1,

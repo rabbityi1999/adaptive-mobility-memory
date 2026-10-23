@@ -118,3 +118,8 @@ python -m unittest discover -s tests -p test_ablation_validation.py -v
 ```
 
 Requires Python and NumPy; fixtures are generated in an automatically cleaned local temporary directory. No model, network, server credentials or real trajectories are used. All four tests passed in23.60seconds. The earlier implementation commit1b35112 was subsequently pushed and independently verified on remote main.
+
+
+## Completion verified - 2026-10-23
+
+The GPU0 ablation job completed with exit0, 200 users and 1000 new calls. All 1200 condition outputs passed independent scoring and identity checks; 200 full outputs and WKG caches were reused. Acc@1 for base/STM/WKG/CKE/STM+WKG/full is 13.5/19.0/13.5/13.0/15.0/15.5 percent. None of the six prespecified Acc@1 contrasts survives Holm adjustment. See [final results](TOKYO_ABLATION_RESULTS.md) and the aggregate JSON. This supersedes the running checkpoints above; do not relaunch inference.
