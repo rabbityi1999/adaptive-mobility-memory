@@ -51,6 +51,8 @@ def arguments():
     parser.add_argument('--gpu', type=int, choices=range(4), default=0)
     parser.add_argument('--gpu-lock-dir', type=Path, default=Path('/tmp'))
     parser.add_argument('--weight-manifest', type=Path)
+    parser.add_argument('--input-protocol', choices=['official-code', 'paper-order'], default='official-code',
+                        help='Explicitly select separately verified paper-order inputs')
     parser.add_argument('--ablation-source', type=Path,
                         help='Completed, audited baseline run for explicit reconstructed module ablations')
     parser.add_argument('--include-official-cke', action='store_true',
@@ -89,6 +91,8 @@ def preflight(args):
                          if line.startswith('MemAvailable:')))
     if available < 32 * 1024**2:
         raise RuntimeError('At least 32 GiB available host RAM is required')
+    if args.input_protocol == 'paper-order' and args.preflight_only:
+        return dict(mode='cpu_only_preflight', model_loaded=False, checked_at=time.time())
     return gpu_snapshot(args.gpu)
 
 
@@ -103,8 +107,9 @@ def run(args):
         CONDITIONS['agent_move_v6_officialCKE'] = 'agent_move_v6'
     # Cooperating project jobs share this non-blocking lock; other jobs are
     # protected by a fresh hardware check immediately before model loading.
-    lock = (args.gpu_lock_dir / ('adaptive_mobility_gpu_%d.lock' % args.gpu)).open('a')
-    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    if not (args.input_protocol == 'paper-order' and args.preflight_only):
+        lock = (args.gpu_lock_dir / ('adaptive_mobility_gpu_%d.lock' % args.gpu)).open('a')
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     hardware = preflight(args)
     os.sched_setaffinity(0, sorted(os.sched_getaffinity(0))[-2:])
     os.nice(19)
@@ -127,17 +132,22 @@ def run(args):
         write(args.output / 'status.json', progress)
         print(json.dumps(progress), flush=True)
     status('verifying_inputs')
-    accepted = json.loads((args.inputs / 'result.json').read_text())
-    assert accepted['status'] == 'prediction_inputs_and_graph_pass'
-    for name, evidence in accepted['artifacts'].items():
-        path = args.inputs / name
-        if not path.exists():
-            path = args.inputs / 'processed' / name
-        assert path.stat().st_size == evidence['bytes'] and sha(path) == evidence['sha256'], name
-    for name, fingerprint in accepted['upstream_sha256'].items():
-        assert sha(args.upstream / name) == fingerprint, name
-    sidecar = json.loads((args.causal_bundle.parent / 'result.json').read_text())
-    assert sidecar['status'] == 'causal_bundle_pass'
+    processed_dir = args.inputs / 'processed'
+    if args.input_protocol == 'paper-order':
+        import paper_order_adapter as paper_order
+        accepted, sidecar, processed_dir = paper_order.validate(args)
+    else:
+        accepted = json.loads((args.inputs / 'result.json').read_text())
+        assert accepted['status'] == 'prediction_inputs_and_graph_pass'
+        for name, evidence in accepted['artifacts'].items():
+            path = args.inputs / name
+            if not path.exists():
+                path = args.inputs / 'processed' / name
+            assert path.stat().st_size == evidence['bytes'] and sha(path) == evidence['sha256'], name
+        for name, fingerprint in accepted['upstream_sha256'].items():
+            assert sha(args.upstream / name) == fingerprint, name
+        sidecar = json.loads((args.causal_bundle.parent / 'result.json').read_text())
+        assert sidecar['status'] == 'causal_bundle_pass'
     assert sha(args.causal_bundle) == sidecar['bundle_sha256']
     assert sidecar['query_selection_sha256'] == sha(args.inputs / 'query_selection.json')
     rows = json.loads(args.causal_bundle.read_text())
@@ -152,6 +162,7 @@ def run(args):
                     'models/personal_memory.py', 'models/prompts.py', 'models/llm_api.py',
                     'evaluate/evaluations.py', 'processing/data.py']
     metadata = dict(model=args.model.name, model_directory=str(args.model), model_seed=100,
+                    input_protocol=args.input_protocol,
                     source_commit='61a3e47667f2862c81478bfa442595b766f2f4d6',
                     upstream_sha256={name: sha(args.upstream / name) for name in source_files},
                     script_sha256=sha(__file__), input_result_sha256=sha(args.inputs / 'result.json'),
@@ -185,7 +196,7 @@ def run(args):
     sys.path.insert(0, str(args.upstream))
     import config
     config.EXP_CITIES = ['Tokyo']
-    config.PROCESSED_DIR = str(args.inputs / 'processed')
+    config.PROCESSED_DIR = str(processed_dir)
     from utils import token_count
     import torch
     import transformers
@@ -221,6 +232,9 @@ def run(args):
             if args.ablation_source:
                 assert original == ablation_plans[self.query][self.stage]
                 record['retained_payloads'] = ablations.retention(original, prompt_text)
+            if args.input_protocol == 'paper-order' and self.stage.startswith('agent_move'):
+                from ablation_adapter import retention
+                record['retained_payloads'] = retention(original, prompt_text)
             append(args.output / 'call_attempts.jsonl', record)
             assert length + 1000 <= model.config.max_position_embeddings
             torch.cuda.synchronize()
@@ -250,9 +264,9 @@ def run(args):
     if args.include_official_cke:
         # SocialWorld finds the accepted GML and loads it; empty dataset cannot
         # supply an alternative graph. This is diagnostic, non-causal evidence.
-        assert (args.inputs / 'processed' / 'Tokyo_graph.gml').is_file()
+        assert (processed_dir / 'Tokyo_graph.gml').is_file()
         official_social = world.SocialWorld(SimpleNamespace(get_generated_datasets=lambda: ({}, {})),
-                          str(args.inputs / 'processed'), 'Tokyo', khop=1, max_neighbors=10)
+                          str(processed_dir), 'Tokyo', khop=1, max_neighbors=10)
     token_count('offline cache check')
     tokenizer = AutoTokenizer.from_pretrained(args.model, local_files_only=True)
     assert tokenizer.eos_token_id == 128001
@@ -260,6 +274,14 @@ def run(args):
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = 'left'
     ablation_plans, reused_full = None, None
+    if args.input_protocol == 'paper-order':
+        status('checking_paper_order_prompts')
+        prompt_manifest, paper_report = paper_order.prompt_preflight(rows, official_social, token_count, tokenizer, CONDITIONS)
+        metadata.update(paper_order_adapter_sha256=sha(paper_order.__file__),
+                        caveat='Paper-text filtering-order reconstruction with local Llama3 and fixed modern addresses; not complete paper-level alignment')
+        write(args.output / 'run_metadata.json', metadata)
+        write(args.output / 'paper_order_prompt_manifest.json', prompt_manifest)
+        write(args.output / 'paper_order_preflight.json', paper_report)
     if args.ablation_source:
         status('checking_all_ablation_prompts')
         ablation_plans, reused_full, prompt_manifest, ablation_report = ablations.prepare(

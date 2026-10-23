@@ -1,0 +1,71 @@
+{
+  "status": "paper_order_zero_model_preflight_pass",
+  "queries": 200,
+  "captured_WKG_inputs": 400,
+  "captured_prediction_templates": 600,
+  "model_calls": 0,
+  "prediction_templates_use_placeholder_WKG": true,
+  "agent_capture_identity_matches": 600,
+  "placeholder_clipped_counts": {
+    "WKG_0": 0,
+    "WKG_1": 0,
+    "agent_move_v6_causalCKE": 93,
+    "llmzs": 0,
+    "agent_move_v6_officialCKE": 93
+  },
+  "placeholder_retention_counts": {
+    "agent_move_v6_causalCKE": {
+      "WKG": {
+        "full": 185,
+        "missing": 11,
+        "partial": 4
+      },
+      "CKE": {
+        "full": 184,
+        "empty_source": 7,
+        "partial": 5,
+        "missing": 4
+      },
+      "STM": {
+        "full": 195,
+        "partial": 4,
+        "missing": 1
+      },
+      "history": {
+        "full": 199,
+        "partial": 1
+      },
+      "output": {
+        "full": 200
+      }
+    },
+    "agent_move_v6_officialCKE": {
+      "WKG": {
+        "full": 185,
+        "missing": 11,
+        "partial": 4
+      },
+      "CKE": {
+        "full": 184,
+        "empty_source": 7,
+        "partial": 5,
+        "missing": 4
+      },
+      "STM": {
+        "full": 195,
+        "partial": 4,
+        "missing": 1
+      },
+      "history": {
+        "full": 199,
+        "partial": 1
+      },
+      "output": {
+        "full": 200
+      }
+    }
+  },
+  "adapter_sha256": "63cb8d96750367063b496e0925aac177f2b3a6705cf81f4516499ba2a4278909",
+  "prompt_manifest_sha256": "08a25505b17f7b6614f6d8221c78733b59f7bd41d263b2b77059998d8699cd02",
+  "caveat": "Placeholder WKG sizes are not actual runtime cost or clipping statistics; recheck each actual generated prompt."
+}
