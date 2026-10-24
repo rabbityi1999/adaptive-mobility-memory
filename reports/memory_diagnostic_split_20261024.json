@@ -1,0 +1,39 @@
+{
+  "status": "memory_diagnostic_users_and_sessions_frozen",
+  "model_calls": 0,
+  "target_event_rows_read": 0,
+  "targets_materialized": 0,
+  "counts": {
+    "fit": 400,
+    "development": 200,
+    "reserve": 1033
+  },
+  "query_session_counts": {
+    "fit": 400,
+    "development": 200
+  },
+  "reserve_queries_selected": 0,
+  "all_pairwise_user_overlaps": {
+    "fit_development": 0,
+    "fit_reserve": 0,
+    "development_reserve": 0
+  },
+  "group_sha256": {
+    "fit": "403ab2d9389727ef1e28416fbb1293596b86b4c48b52367d28f7cde3fa1d27c3",
+    "development": "7864634ea7476cabe4fb2d5223794d8bbfab0826c1b5a49ad628ea9a7a0f142b",
+    "reserve": "5be305ff76abcb619a871a52ea05e390eb19358aca39d49b26c63de804ce044a"
+  },
+  "manifest_sha256": "e1c69a5d0cf089ac25ff3125275f2629fce715b61e313af306c4ae9892a04bcf",
+  "config_sha256": "9607c33f84b5ae492ce0f3bd481498f125d01c10fbe8f16efba00198f24319e0",
+  "inventory_report_sha256": "cf58086dda840555267e7385e35165d94daf0bc741f836877e4a0239f6c7b247",
+  "session_manifest_sha256": "91d408472a3eab5724504d555f29e341c68d7658ae6197408b4867baf6598f0f",
+  "script_sha256": "ae0506d204b634339034c7372681a03cc61200a6c8854a88593e90c552cc48e7",
+  "order_invariance_checked": true,
+  "limitations": [
+    "Retrospective session-count eligibility; not prospective enrollment",
+    "Prior city preprocessing may have seen these histories",
+    "Shared candidates use both personal and population information, so reader condition differences isolate additional evidence only",
+    "Development diagnostics are not confirmatory tests of habitual drift"
+  ],
+  "next_gate": "CPU input/candidate builder plus independent time, target-isolation and source-exclusion checks, then reader prompt/decoder freeze before any generation"
+}
