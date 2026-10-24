@@ -1,0 +1,203 @@
+{
+  "status": "completed_output_scores_independently_recomputed",
+  "analysis_time_unix": 1792812833.199574,
+  "model": "Meta-Llama-3-8B-Instruct",
+  "n_users": 200,
+  "conditions": {
+    "agent_move_v6_causalCKE": {
+      "Acc1": 0.08,
+      "Acc5": 0.315,
+      "NDCG5": 0.20520776912041377,
+      "official_ndcg_untruncated": 0.20520776912041377,
+      "n": 200,
+      "execution_errors": 0,
+      "empty_predictions": 1,
+      "invalid_ids": 65,
+      "predictions_not_exactly_five": 1,
+      "raw_response_fallback": 89
+    },
+    "llmzs": {
+      "Acc1": 0.08,
+      "Acc5": 0.315,
+      "NDCG5": 0.20289720560720892,
+      "official_ndcg_untruncated": 0.20289720560720892,
+      "n": 200,
+      "execution_errors": 0,
+      "empty_predictions": 1,
+      "invalid_ids": 15,
+      "predictions_not_exactly_five": 6,
+      "raw_response_fallback": 93
+    },
+    "agent_move_v6_officialCKE": {
+      "Acc1": 0.085,
+      "Acc5": 0.32,
+      "NDCG5": 0.20920650314292344,
+      "official_ndcg_untruncated": 0.20920650314292344,
+      "n": 200,
+      "execution_errors": 0,
+      "empty_predictions": 0,
+      "invalid_ids": 61,
+      "predictions_not_exactly_five": 1,
+      "raw_response_fallback": 86
+    }
+  },
+  "comparisons": [
+    {
+      "a": "agent_move_v6_causalCKE",
+      "b": "llmzs",
+      "direction": "a minus b",
+      "metrics": {
+        "Acc1": {
+          "difference": 0.0,
+          "ci95": [
+            -0.05,
+            0.05
+          ]
+        },
+        "Acc5": {
+          "difference": 0.0,
+          "ci95": [
+            -0.06,
+            0.06
+          ]
+        },
+        "NDCG5": {
+          "difference": 0.0023105635132048994,
+          "ci95": [
+            -0.04382196825768378,
+            0.04940508995747547
+          ]
+        }
+      },
+      "a_only_correct": 13,
+      "b_only_correct": 13,
+      "acc1_exact_p": 1.0,
+      "acc1_holm_p_three_pairs": 1.0
+    },
+    {
+      "a": "agent_move_v6_causalCKE",
+      "b": "agent_move_v6_officialCKE",
+      "direction": "a minus b",
+      "metrics": {
+        "Acc1": {
+          "difference": -0.005,
+          "ci95": [
+            -0.015,
+            0.0
+          ]
+        },
+        "Acc5": {
+          "difference": -0.005,
+          "ci95": [
+            -0.015,
+            0.0
+          ]
+        },
+        "NDCG5": {
+          "difference": -0.003998734022509678,
+          "ci95": [
+            -0.01015085083538632,
+            0.0
+          ]
+        }
+      },
+      "a_only_correct": 0,
+      "b_only_correct": 1,
+      "acc1_exact_p": 1.0,
+      "acc1_holm_p_three_pairs": 1.0
+    },
+    {
+      "a": "llmzs",
+      "b": "agent_move_v6_officialCKE",
+      "direction": "a minus b",
+      "metrics": {
+        "Acc1": {
+          "difference": -0.005,
+          "ci95": [
+            -0.055,
+            0.045
+          ]
+        },
+        "Acc5": {
+          "difference": -0.005,
+          "ci95": [
+            -0.065,
+            0.055
+          ]
+        },
+        "NDCG5": {
+          "difference": -0.006309297535714575,
+          "ci95": [
+            -0.05340382397998516,
+            0.03979925083986678
+          ]
+        }
+      },
+      "a_only_correct": 13,
+      "b_only_correct": 14,
+      "acc1_exact_p": 1.0,
+      "acc1_holm_p_three_pairs": 1.0
+    }
+  ],
+  "costs_by_stage": {
+    "WKG": {
+      "calls": 400,
+      "input_tokens": 131913,
+      "output_tokens": 87831,
+      "inference_seconds": 2597.943273022771,
+      "clipped_calls": 0,
+      "max_new_tokens_reached": 2
+    },
+    "agent_move_v6_causalCKE": {
+      "calls": 200,
+      "input_tokens": 425445,
+      "output_tokens": 72783,
+      "inference_seconds": 2233.9560777507722,
+      "clipped_calls": 155,
+      "max_new_tokens_reached": 0
+    },
+    "llmzs": {
+      "calls": 200,
+      "input_tokens": 148039,
+      "output_tokens": 99777,
+      "inference_seconds": 2951.0175257362425,
+      "clipped_calls": 0,
+      "max_new_tokens_reached": 0
+    },
+    "agent_move_v6_officialCKE": {
+      "calls": 200,
+      "input_tokens": 425615,
+      "output_tokens": 73832,
+      "inference_seconds": 2264.547975677997,
+      "clipped_calls": 155,
+      "max_new_tokens_reached": 0
+    }
+  },
+  "bootstrap": {
+    "seed": 20261023,
+    "draws": 10000,
+    "unit": "paired user",
+    "interval": "percentile95",
+    "limitation": "Conditional on ordered benchmark cohort; user exchangeability assumed, not a random population sample. Three metric intervals are descriptive and not simultaneous."
+  },
+  "cost_note": "WKG cost counted once here; add it to either standalone AgentMove budget, never to LLM-ZS. Shared execution total is not sum of standalone framework budgets.",
+  "integrity": {
+    "exit_code": 0,
+    "manifest_and_ground_truth_matched": true,
+    "output_files": 600,
+    "failures_retained": true,
+    "metric_matches_runner": true,
+    "no_model_rerun": true,
+    "result_tree_sha256": "e77cfd77e64c29613b0ec545b8d7c2500815fac78ea5964121be1e2f622d777c",
+    "selection_sha256": "fc9baee539c4456555dd537ab74623d9448e2385bcd9129a1aeaa89357a0a71e",
+    "bundle_sha256": "5eff847b69c2b3f15809af9270183ddd198fb3c0aea2d024bd11ba93bc619c23",
+    "runner_sha256": "21457a9949f291e5cf616a9adeb93ae6da2473793a92f3396d18bfb35bf185ab",
+    "validator_sha256": "6008fe0c1c76dc68792f8e28c5abbadbfd769cfba5c4facdcfca3c32ba52ce20"
+  },
+  "caveats": [
+    "Original static CKE is non-causal; causal variant uses modern addresses and fixed offline membership.",
+    "Local Llama3 is not the paper GPT4omini main-table configuration.",
+    "Ordered200-user cohort; no hyperparameter tuning or independence claim from1000calls.",
+    "Post-output recomputation is not independent retraining or model replication."
+  ]
+}
