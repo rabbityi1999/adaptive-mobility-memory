@@ -1,0 +1,132 @@
+{
+  "status": "registered_cohort_identity_inventory_pass",
+  "model_calls": 0,
+  "new_targets_selected": 0,
+  "new_test_set_frozen": false,
+  "retained_users": 7360,
+  "eligible_users": 2409,
+  "registered_excluded_hashes": 3562,
+  "eligible_excluded": 776,
+  "remaining_eligible_users": 1633,
+  "remaining_with_validation_session": 1633,
+  "eligible_not_in_legacy_tokyo": 0,
+  "remaining_users_sha256": "b8b8f5b219ea17b9bdab647cb46bb48fbd8c8634eea31aa68b91c2894a0e1139",
+  "per_source_eligible_overlap": {
+    "prepared/inputs.jsonl": 113,
+    "retrieval_followup/val_rows.jsonl": 71,
+    "retrieval_followup/test_rows.jsonl": 72,
+    "ranking_v2/fit_inputs.jsonl": 165,
+    "ranking_v2/tune_inputs.jsonl": 81,
+    "ranking_v2/validation_v2_1/fit_inputs.jsonl": 165,
+    "ranking_v2/validation_v2_1/tune_inputs.jsonl": 81,
+    "memory_suite/data/fit_inputs.jsonl": 165,
+    "memory_suite/data/tune_inputs.jsonl": 81,
+    "memory_suite/data/test_inputs.jsonl": 106,
+    "memory_suite/matched_followup/data/test_inputs.jsonl": 46,
+    "memory_suite/permutation_followup/original/data/fit_inputs.jsonl": 43,
+    "memory_suite/permutation_followup/original/data/tune_inputs.jsonl": 0,
+    "memory_suite/permutation_followup/rotated/data/fit_inputs.jsonl": 43,
+    "memory_suite/permutation_followup/rotated/data/tune_inputs.jsonl": 0,
+    "ranking_v2/user_hashes.json": 306,
+    "code_queries.json": 200,
+    "paper_queries.json": 200
+  },
+  "sources": {
+    "prepared/inputs.jsonl": {
+      "sha256": "1eb898007d3de1eb8f5d016605663e6a2d71748553780f33f69278a461b1908f",
+      "users": 780,
+      "rows": 400
+    },
+    "retrieval_followup/val_rows.jsonl": {
+      "sha256": "e5ed68526cf45a8529d25e78cc1faa85736417e5d53c9eeb665b03b75e80165e",
+      "users": 400,
+      "rows": 400
+    },
+    "retrieval_followup/test_rows.jsonl": {
+      "sha256": "b53abf9e27c68d2f81ec62cf0e1b34b668622bada8dc2736e2cabe67a762e662",
+      "users": 400,
+      "rows": 400
+    },
+    "ranking_v2/fit_inputs.jsonl": {
+      "sha256": "da37dd2315807bb7529a9e814783fa515e2ade57081b607fbbb7491933c04813",
+      "users": 800,
+      "rows": 800
+    },
+    "ranking_v2/tune_inputs.jsonl": {
+      "sha256": "8abd02e0be210f21f520af86325bee22c1fbe999402f2c53c6eb452d0b9fd3cf",
+      "users": 400,
+      "rows": 400
+    },
+    "ranking_v2/validation_v2_1/fit_inputs.jsonl": {
+      "sha256": "6fb574eb198fc565ec19f97906d262835257eec5b00a8fb3321d9e57e4fb2150",
+      "users": 800,
+      "rows": 800
+    },
+    "ranking_v2/validation_v2_1/tune_inputs.jsonl": {
+      "sha256": "b79b2ebee2cd1ae3009bf024ab0027c526680f4657a0d2253cbbe48d55636b6a",
+      "users": 400,
+      "rows": 400
+    },
+    "memory_suite/data/fit_inputs.jsonl": {
+      "sha256": "20749fcf730bda8dc6b1fc276f994ec9ceba2d21760b768e71d9d8f499d3a714",
+      "users": 800,
+      "rows": 800
+    },
+    "memory_suite/data/tune_inputs.jsonl": {
+      "sha256": "51c39bb2539b2a9d720a888aefd3770697a4592bda30a9ebbe458862e1f9931a",
+      "users": 400,
+      "rows": 400
+    },
+    "memory_suite/data/test_inputs.jsonl": {
+      "sha256": "276f6019e0ba789566a079a47f6a20ae37214a6a325f159704f5d60aa7a5422f",
+      "users": 666,
+      "rows": 677
+    },
+    "memory_suite/matched_followup/data/test_inputs.jsonl": {
+      "sha256": "0ce6cb4e8892184c1ffc8e66a162c84c18a61d3c21efecfdf0ca9d2dcb7fad04",
+      "users": 145,
+      "rows": 100
+    },
+    "memory_suite/permutation_followup/original/data/fit_inputs.jsonl": {
+      "sha256": "3e1127e4374206c0f4f6d4db6b6eb2094b1c250bf53e440ef97cc1909c0955a8",
+      "users": 200,
+      "rows": 200
+    },
+    "memory_suite/permutation_followup/original/data/tune_inputs.jsonl": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "users": 0,
+      "rows": 0
+    },
+    "memory_suite/permutation_followup/rotated/data/fit_inputs.jsonl": {
+      "sha256": "1966f414f1a68c43faab723d6a026a49a0f0c7f6b185bb304dcf8ba96649f0b7",
+      "users": 200,
+      "rows": 200
+    },
+    "memory_suite/permutation_followup/rotated/data/tune_inputs.jsonl": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "users": 0,
+      "rows": 0
+    },
+    "ranking_v2/user_hashes.json": {
+      "sha256": "2d9be1f6702c4bd052ed4b96aa25f2d1bd5deaa6ea63456669880234a797f7c8",
+      "users": 1600
+    },
+    "code_queries.json": {
+      "sha256": "526e73882604a4ebdb6632c3f3b0bfcf42ef842953299d5ee82a29fad1bddefb",
+      "users": 200
+    },
+    "paper_queries.json": {
+      "sha256": "fc9baee539c4456555dd537ab74623d9448e2385bcd9129a1aeaa89357a0a71e",
+      "users": 200
+    }
+  },
+  "session_manifest_sha256": "91d408472a3eab5724504d555f29e341c68d7658ae6197408b4867baf6598f0f",
+  "identity_cache_sha256": "f2445157ae18e2e719cb6d160eeeb4c3ac971aaa5c5af6b7c92dd060e524ac2a",
+  "script_sha256": "7ebfb3a306205b2206a311c349ae139906122ace22a7abaf6a675f21b93f5ab2",
+  "limitations": [
+    "Only listed cohorts and their recorded donors/reservations were excluded; external historical studies are not certified.",
+    "Population-memory and previous city preprocessing may include these users; not a strict background-data holdout.",
+    "Availability does not establish habit drift, source complementarity, statistical power or a final split.",
+    "Eligibility uses total session counts as in reproduction; prospective sampling must be separately defined."
+  ]
+}
