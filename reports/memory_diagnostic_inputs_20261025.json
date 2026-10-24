@@ -1,0 +1,200 @@
+{
+  "status": "fit_and_development_inputs_independently_validated",
+  "date_local": "2026-10-25",
+  "model_calls": 0,
+  "reserve_queries": 0,
+  "phases": {
+    "fit": {
+      "build": {
+        "status": "memory_inputs_built_pending_independent_validation",
+        "phase": "fit",
+        "model_calls": 0,
+        "queries": 400,
+        "coverage": {
+          "catalog_hit": {
+            "hits": 364,
+            "n": 400,
+            "fraction": 0.91
+          },
+          "hit24": {
+            "hits": 198,
+            "n": 400,
+            "fraction": 0.495
+          },
+          "hit48": {
+            "hits": 231,
+            "n": 400,
+            "fraction": 0.5775
+          },
+          "hit96": {
+            "hits": 258,
+            "n": 400,
+            "fraction": 0.645
+          }
+        },
+        "empty_memory_queries": {
+          "context": 400,
+          "personal": 0,
+          "population": 72,
+          "fixed_fusion": 0
+        },
+        "memory_token_totals": {
+          "context": 0,
+          "personal": 101400,
+          "population": 65800,
+          "fixed_fusion": 87440
+        },
+        "max_memory_tokens": {
+          "context": 0,
+          "personal": 255,
+          "population": 255,
+          "fixed_fusion": 255
+        },
+        "config_sha256": "9607c33f84b5ae492ce0f3bd481498f125d01c10fbe8f16efba00198f24319e0",
+        "split_sha256": "e1c69a5d0cf089ac25ff3125275f2629fce715b61e313af306c4ae9892a04bcf",
+        "script_sha256": "2c2c0d7098927571aa6ac4ad1dbed018d735a68bf754f741b9f909dbd8fce7e4",
+        "source_pickle_sha256": "b44b72bcd0f4d17d921156449c6aad13dea19535ec9b0b38deff63ed68d65d4f",
+        "session_manifest_sha256": "91d408472a3eab5724504d555f29e341c68d7658ae6197408b4867baf6598f0f",
+        "tokenizer_sha256": {
+          "tokenizer.json": "c05a3c2174e9edd5be19dc5a0748c42a9037bec2811ce062728bfd71f8702d78",
+          "tokenizer_config.json": "5f05beada81734485478a52246564e0748b5934d7c0f252ab88ee6324074b90a",
+          "special_tokens_map.json": "462d91939dbc37178aa5a3eae7068d1990ccc92e09f288cc71f42cdf139d69cc"
+        },
+        "elapsed_seconds": 264.50920605659485,
+        "peak_rss_kib": 1225168,
+        "artifacts": {
+          "inputs.jsonl": "01fb3f5db9966fa366bccc0466c5541631522643cea062d9dec6fb5188cdcba4",
+          "labels.jsonl": "e3f59330a5a75db1c0b7aae4f29b7d1035afeabc33ffa7b8bfd0bd84062404f1",
+          "audit.jsonl": "029f9e8979a9bc4d1664d72bba719ac75155039519694a38b48c92d5b8accfe1"
+        },
+        "caveats": [
+          "Coverage is not prediction accuracy; shared candidates already use both history sources.",
+          "Bulk source checkpoint loaded, but no reserve query selected or reserve records used for population.",
+          "Upper-bound row/token budget, not exact realized cost matching."
+        ]
+      },
+      "validation": {
+        "status": "independent_memory_input_validation_pass",
+        "phase": "fit",
+        "queries": 400,
+        "model_calls": 0,
+        "all_time_and_source_exclusions_pass": true,
+        "all_memory_rows_and_tokens_recomputed": true,
+        "all_labels_and_contexts_matched": true,
+        "all_catalogs_recomputed": true,
+        "full_retrieval_reference_indices": [
+          0,
+          200,
+          399
+        ],
+        "coverage_matches": true,
+        "result_sha256": "c2d2ccd51721bb7ac02cf8591305bf3faf5f8839991cdf70464256d2e76ff723",
+        "validator_sha256": "f9c32707b8031b3bdfd6947d4b2600339918bb1c4e8892cfec725be7b458ec5b",
+        "elapsed_seconds": 89.18914866447449,
+        "limitation": "Full queue order and candidate attributes independently reconstructed for first/middle/last; all queries validated for catalog, history provenance, memory and budget."
+      },
+      "build_exit": {
+        "exit_code": 0
+      },
+      "validation_exit": {
+        "exit_code": 0
+      }
+    },
+    "development": {
+      "build": {
+        "status": "memory_inputs_built_pending_independent_validation",
+        "phase": "development",
+        "model_calls": 0,
+        "queries": 200,
+        "coverage": {
+          "catalog_hit": {
+            "hits": 170,
+            "n": 200,
+            "fraction": 0.85
+          },
+          "hit24": {
+            "hits": 93,
+            "n": 200,
+            "fraction": 0.465
+          },
+          "hit48": {
+            "hits": 102,
+            "n": 200,
+            "fraction": 0.51
+          },
+          "hit96": {
+            "hits": 116,
+            "n": 200,
+            "fraction": 0.58
+          }
+        },
+        "empty_memory_queries": {
+          "context": 200,
+          "personal": 0,
+          "population": 35,
+          "fixed_fusion": 0
+        },
+        "memory_token_totals": {
+          "context": 0,
+          "personal": 50960,
+          "population": 32855,
+          "fixed_fusion": 43700
+        },
+        "max_memory_tokens": {
+          "context": 0,
+          "personal": 255,
+          "population": 255,
+          "fixed_fusion": 255
+        },
+        "config_sha256": "9607c33f84b5ae492ce0f3bd481498f125d01c10fbe8f16efba00198f24319e0",
+        "split_sha256": "e1c69a5d0cf089ac25ff3125275f2629fce715b61e313af306c4ae9892a04bcf",
+        "script_sha256": "2c2c0d7098927571aa6ac4ad1dbed018d735a68bf754f741b9f909dbd8fce7e4",
+        "source_pickle_sha256": "b44b72bcd0f4d17d921156449c6aad13dea19535ec9b0b38deff63ed68d65d4f",
+        "session_manifest_sha256": "91d408472a3eab5724504d555f29e341c68d7658ae6197408b4867baf6598f0f",
+        "tokenizer_sha256": {
+          "tokenizer.json": "c05a3c2174e9edd5be19dc5a0748c42a9037bec2811ce062728bfd71f8702d78",
+          "tokenizer_config.json": "5f05beada81734485478a52246564e0748b5934d7c0f252ab88ee6324074b90a",
+          "special_tokens_map.json": "462d91939dbc37178aa5a3eae7068d1990ccc92e09f288cc71f42cdf139d69cc"
+        },
+        "elapsed_seconds": 131.91121006011963,
+        "peak_rss_kib": 1219780,
+        "artifacts": {
+          "inputs.jsonl": "1bfd2879f54b34166fcbb5de547031abd322efb7562a63e7f8e8124e2df40288",
+          "labels.jsonl": "f2354174991ceaca61cf89171e11ecbdac9da3aacb8ace384c1b58901a12f2df",
+          "audit.jsonl": "50a862f9899715c8a58bf78a44b54249de971c0cb20e0097b5f7b7dfbef9b476"
+        },
+        "caveats": [
+          "Coverage is not prediction accuracy; shared candidates already use both history sources.",
+          "Bulk source checkpoint loaded, but no reserve query selected or reserve records used for population.",
+          "Upper-bound row/token budget, not exact realized cost matching."
+        ]
+      },
+      "validation": {
+        "status": "independent_memory_input_validation_pass",
+        "phase": "development",
+        "queries": 200,
+        "model_calls": 0,
+        "all_time_and_source_exclusions_pass": true,
+        "all_memory_rows_and_tokens_recomputed": true,
+        "all_labels_and_contexts_matched": true,
+        "all_catalogs_recomputed": true,
+        "full_retrieval_reference_indices": [
+          0,
+          100,
+          199
+        ],
+        "coverage_matches": true,
+        "result_sha256": "701331654486992dcaaef4dfa1b5ee04075d9aac5fac6db13f8676ec899faaf3",
+        "validator_sha256": "f9c32707b8031b3bdfd6947d4b2600339918bb1c4e8892cfec725be7b458ec5b",
+        "elapsed_seconds": 46.94345688819885,
+        "limitation": "Full queue order and candidate attributes independently reconstructed for first/middle/last; all queries validated for catalog, history provenance, memory and budget."
+      },
+      "build_exit": {
+        "exit_code": 0
+      },
+      "validation_exit": {
+        "exit_code": 0
+      }
+    }
+  }
+}

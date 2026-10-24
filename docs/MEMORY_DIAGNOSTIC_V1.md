@@ -1,5 +1,7 @@
 # 个人／群体记忆诊断 v1：冻结用户与输入规则
 
+2026-10-25更新：下文保留冻结时的约定与历史状态。后续600条CPU输入已构建并通过独立验收，详见[输入验收](MEMORY_DIAGNOSTIC_INPUTS.md)。LLM提示／解码尚未冻结，未产生本诊断的新预测。
+
 2026-10-24，在新目标抽取、候选覆盖检查和模型预测前固定。[机器可读协议](../configs/memory_diagnostic_v1.json)、[冻结检查点](../reports/memory_diagnostic_split_20261024.json)、[生成代码](../scripts/freeze_memory_diagnostic.py)。这是工作五的开发诊断，独立标注于已完成的AgentMove流程重建；论文轨迹计数差异仍待解释。
 
 ## 本轮已完成
