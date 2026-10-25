@@ -1,0 +1,28 @@
+{
+  "status": "runner_cpu_preflight_pass",
+  "summary": {
+    "status": "runner_cpu_preflight_pass",
+    "prompts": 2400,
+    "model_calls": 0,
+    "model_loaded": false,
+    "elapsed_seconds": 8.416137933731079,
+    "metadata_sha256": "3fb0f14d119c232d78079c1de3579fd61da9ed8ef8d2c75aa9bbf642592bf665"
+  },
+  "runner_sha256": "97c377b34dde7ca9eb0a37327b18e7768c2927c3ac0aaa415e92e15174a56819",
+  "parser_sha256": "4e7b4ef45de80f897d860433263b2a5cf836880e7ebcbd261016763ee8c1ea2d",
+  "config_sha256": "0999c45e8875c93c727061970917eebe5733894d8becb90c11533938a1498ee0",
+  "preflight_report_sha256": "b0af6790bce9f1d3ee9f86a01d2acdb55c9dce5b5f721d9b90112b787fe416e2",
+  "weight_manifest_sha256": "378d9ba99a956ad9581b7cff3d5ca133d6614a05e21c74954000e9e24bfe136f",
+  "weight_check": "Prior full shard hashes retained; current sizes/mtimes and metadata hashes checked; no full shard rehash this run",
+  "prompt_seals": {
+    "fit": "defabbb9eb3a4700233352af6fe721a96410de554c1666db099b02295ecd91de",
+    "development": "31bc52c460d6cf0ec152664ee03bad63e7cb17818190ddb84ae8de2d4d68d726"
+  },
+  "exit_code": 0,
+  "outer_exit_code": 0,
+  "local_tests": {
+    "suite": "test_memory*.py",
+    "passed": 8,
+    "scope": "Synthetic reader/parser, completion gate, fixed denominator, ranking, oracle, paired statistics and Holm checks; not real model inference"
+  }
+}
