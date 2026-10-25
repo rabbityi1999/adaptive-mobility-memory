@@ -1,0 +1,47 @@
+{
+  "status": "running_not_evaluated",
+  "started_at_utc": "2026-10-25T06:34:19.284251+00:00",
+  "checked_at_utc": "2026-10-25T06:36:08.413350+00:00",
+  "code_commit": "369ea780fa9fcd4d37a886b2d9e74b9719c4b0c2",
+  "source_hashes": {
+    "scripts/run_memory_reader.py": "97c377b34dde7ca9eb0a37327b18e7768c2927c3ac0aaa415e92e15174a56819",
+    "scripts/prepare_memory_reader.py": "4e7b4ef45de80f897d860433263b2a5cf836880e7ebcbd261016763ee8c1ea2d",
+    "scripts/evaluate_memory_reader.py": "7c80b628721060e60cd3f63e4581778d98a30b45d32bddd79f49fdeae50f1ac2",
+    "configs/memory_reader_v1.json": "0999c45e8875c93c727061970917eebe5733894d8becb90c11533938a1498ee0",
+    "reports/memory_reader_preflight_20261025.json": "b0af6790bce9f1d3ee9f86a01d2acdb55c9dce5b5f721d9b90112b787fe416e2"
+  },
+  "planned_users": 600,
+  "planned_calls": 2400,
+  "phases": {
+    "fit": 400,
+    "development": 200
+  },
+  "conditions": [
+    "context",
+    "personal",
+    "population",
+    "fixed_fusion"
+  ],
+  "gpu": 0,
+  "admission": {
+    "index": 0,
+    "free_mib": 24121,
+    "utilization": 0,
+    "available_host_kib": 154610276,
+    "checked_at": 1792910069.5124068
+  },
+  "progress": {
+    "stage": "generating",
+    "model_calls": 43,
+    "completed_queries": 10,
+    "pid": 3478927,
+    "checked_at": 1792910168.4133499,
+    "phase": "fit",
+    "phase_prompts_done": 43
+  },
+  "failure_file_present": false,
+  "exit_file_present": false,
+  "prediction_metrics": "pending_complete_run_and_independent_evaluation",
+  "output_location": "/mnt/xuyi/memory_reader_run_v1_20261025",
+  "timeout_seconds": 21600
+}
