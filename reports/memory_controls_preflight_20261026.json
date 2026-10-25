@@ -1,0 +1,95 @@
+{
+  "status": "controls_cpu_preflight_pass_pending_independent_validation",
+  "protocol": "memory-controls-v1-20261026",
+  "prior_results_observed": true,
+  "model_calls": 0,
+  "model_loaded": false,
+  "label_files_opened": 0,
+  "response_files_opened": 0,
+  "reserve_queries": 0,
+  "script_sha256": "dff89895e006d44550b7040d9e3755b12d8681f6c56cb4cc05ebd9f860153c58",
+  "renderer_sha256": "4e7b4ef45de80f897d860433263b2a5cf836880e7ebcbd261016763ee8c1ea2d",
+  "config_sha256": "34f056d91b79130f72dc380615e13838a85d2920532eb63d699733c93c94cc12",
+  "reader_config_sha256": "0999c45e8875c93c727061970917eebe5733894d8becb90c11533938a1498ee0",
+  "accepted_inputs_sha256": "6af28cda5e9357680e5aea45399600a1487b96ce6cfcb25911151f65225cdf72",
+  "original_preflight_sha256": "b0af6790bce9f1d3ee9f86a01d2acdb55c9dce5b5f721d9b90112b787fe416e2",
+  "original_results_sha256": "b7235e8dbe098ffb69dd7517af6d9e525a7088d1bd1f9d1a742342138f6e875f",
+  "phases": {
+    "fit": {
+      "queries": 400,
+      "prompts": 1200,
+      "inputs_sha256": "01fb3f5db9966fa366bccc0466c5541631522643cea062d9dec6fb5188cdcba4",
+      "original_prompts_sha256": "defabbb9eb3a4700233352af6fe721a96410de554c1666db099b02295ecd91de",
+      "prompts_sha256": "752ed8fb510d72a7ec1bea98879b65a18b7219db968cb701c746fb9a30dc64b1",
+      "conditions": {
+        "personal6": {
+          "prompts": 400,
+          "generate": 326,
+          "reuse": 74,
+          "null_interventions": 2,
+          "changed_rows": 2370,
+          "total_input_tokens": 573891,
+          "max_input_tokens": 1510
+        },
+        "personal_rebound": {
+          "prompts": 400,
+          "generate": 400,
+          "reuse": 0,
+          "null_interventions": 0,
+          "changed_rows": 4770,
+          "total_input_tokens": 621291,
+          "max_input_tokens": 1630
+        },
+        "fusion_population_rebound": {
+          "prompts": 400,
+          "generate": 328,
+          "reuse": 72,
+          "null_interventions": 72,
+          "changed_rows": 1672,
+          "total_input_tokens": 607331,
+          "max_input_tokens": 1630
+        }
+      }
+    },
+    "development": {
+      "queries": 200,
+      "prompts": 600,
+      "inputs_sha256": "1bfd2879f54b34166fcbb5de547031abd322efb7562a63e7f8e8124e2df40288",
+      "original_prompts_sha256": "31bc52c460d6cf0ec152664ee03bad63e7cb17818190ddb84ae8de2d4d68d726",
+      "prompts_sha256": "5e4f0a7ce2389ca31b2891684efb15df4906cb0ee96d4fa04570d1e0ee4bbe87",
+      "conditions": {
+        "personal6": {
+          "prompts": 200,
+          "generate": 165,
+          "reuse": 35,
+          "null_interventions": 0,
+          "changed_rows": 1198,
+          "total_input_tokens": 286997,
+          "max_input_tokens": 1515
+        },
+        "personal_rebound": {
+          "prompts": 200,
+          "generate": 200,
+          "reuse": 0,
+          "null_interventions": 0,
+          "changed_rows": 2398,
+          "total_input_tokens": 310957,
+          "max_input_tokens": 1635
+        },
+        "fusion_population_rebound": {
+          "prompts": 200,
+          "generate": 165,
+          "reuse": 35,
+          "null_interventions": 35,
+          "changed_rows": 835,
+          "total_input_tokens": 303697,
+          "max_input_tokens": 1607
+        }
+      }
+    }
+  },
+  "elapsed_seconds": 6.830553770065308,
+  "peak_rss_kib": 484552,
+  "planned_new_calls": 1584,
+  "planned_reuse": 216
+}
