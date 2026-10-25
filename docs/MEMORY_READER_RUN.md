@@ -1,5 +1,7 @@
 # 记忆读取 v1：运行器、复算器与启动条件
 
+2026-10-25 17:33更新：本批GPU0推理已完成2,400次调用，内外层退出0；独立复算通过，详见[结果报告](MEMORY_READER_RESULTS.md)。下文CPU预检和等待资源记录是历史状态，不能据此重复启动同批实验。
+
 2026-10-25（北京时间）。本轮实现运行代码并验证CPU路径，未启动GPU预测。[冻结接口](MEMORY_READER_V1.md)及输入保持不变；[runner](../scripts/run_memory_reader.py)、[独立复算器](../scripts/evaluate_memory_reader.py)、[执行前报告](../reports/memory_runner_preflight_20261025.json)。
 
 ## 已完成的验证

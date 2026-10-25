@@ -1,0 +1,373 @@
+{
+  "status": "memory_reader_results_independently_recomputed",
+  "model_calls": 2400,
+  "phases": {
+    "fit": {
+      "conditions": {
+        "context": {
+          "n": 400,
+          "metrics": {
+            "Acc1": 0.0775,
+            "Acc5": 0.19,
+            "NDCG5": 0.13241566782260705
+          },
+          "format_valid": 397,
+          "candidate_hit_n": 231,
+          "conditional_metrics": {
+            "Acc1": 0.1341991341991342,
+            "Acc5": 0.329004329004329,
+            "NDCG5": 0.22929119969282605
+          }
+        },
+        "personal": {
+          "n": 400,
+          "metrics": {
+            "Acc1": 0.135,
+            "Acc5": 0.3725,
+            "NDCG5": 0.26023738438872895
+          },
+          "format_valid": 400,
+          "candidate_hit_n": 231,
+          "conditional_metrics": {
+            "Acc1": 0.23376623376623376,
+            "Acc5": 0.645021645021645,
+            "NDCG5": 0.4506275054350285
+          }
+        },
+        "population": {
+          "n": 400,
+          "metrics": {
+            "Acc1": 0.0825,
+            "Acc5": 0.22,
+            "NDCG5": 0.15430696151444992
+          },
+          "format_valid": 400,
+          "candidate_hit_n": 231,
+          "conditional_metrics": {
+            "Acc1": 0.14285714285714285,
+            "Acc5": 0.38095238095238093,
+            "NDCG5": 0.26719820175662323
+          }
+        },
+        "fixed_fusion": {
+          "n": 400,
+          "metrics": {
+            "Acc1": 0.1075,
+            "Acc5": 0.3425,
+            "NDCG5": 0.2310577251256721
+          },
+          "format_valid": 400,
+          "candidate_hit_n": 231,
+          "conditional_metrics": {
+            "Acc1": 0.18614718614718614,
+            "Acc5": 0.5930735930735931,
+            "NDCG5": 0.4000999569275707
+          }
+        }
+      },
+      "paired_comparisons": {
+        "personal-population": {
+          "difference": [
+            0.0525,
+            0.1525,
+            0.10593042287427928
+          ],
+          "ci95": [
+            [
+              0.02,
+              0.085
+            ],
+            [
+              0.10743750000000006,
+              0.1975
+            ],
+            [
+              0.0746784286563479,
+              0.1369079781777445
+            ]
+          ],
+          "a_only_acc1": 32,
+          "b_only_acc1": 11,
+          "acc1_exact_p": 0.001913961001264397,
+          "acc1_holm_p": 0.005741883003793191
+        },
+        "fixed_fusion-personal": {
+          "difference": [
+            -0.0275,
+            -0.03,
+            -0.029179659263056826
+          ],
+          "ci95": [
+            [
+              -0.0525,
+              -0.005
+            ],
+            [
+              -0.06,
+              0.0
+            ],
+            [
+              -0.04744132340562242,
+              -0.011258192516261813
+            ]
+          ],
+          "a_only_acc1": 6,
+          "b_only_acc1": 17,
+          "acc1_exact_p": 0.03468966484069824,
+          "acc1_holm_p": 0.06937932968139648
+        },
+        "fixed_fusion-population": {
+          "difference": [
+            0.025,
+            0.1225,
+            0.07675076361122249
+          ],
+          "ci95": [
+            [
+              0.0025,
+              0.0475
+            ],
+            [
+              0.0825,
+              0.1625
+            ],
+            [
+              0.05341707178757147,
+              0.10091461175582436
+            ]
+          ],
+          "a_only_acc1": 15,
+          "b_only_acc1": 5,
+          "acc1_exact_p": 0.04138946533203125,
+          "acc1_holm_p": 0.06937932968139648
+        }
+      },
+      "oracle_personal_population": {
+        "acc1": 0.1625,
+        "personal_only": 32,
+        "population_only": 11,
+        "both": 22,
+        "neither": 335,
+        "interpretation": "Post-hoc diagnostic upper bound, not a deployable selector"
+      },
+      "metric_order": [
+        "Acc1",
+        "Acc5",
+        "NDCG5"
+      ],
+      "bootstrap_draws": 10000,
+      "seed": 20261024,
+      "format_reasons": {
+        "context": {
+          "valid": 397,
+          "duplicate_ids": 3
+        },
+        "personal": {
+          "valid": 400
+        },
+        "population": {
+          "valid": 400
+        },
+        "fixed_fusion": {
+          "valid": 400
+        }
+      },
+      "response_sha256": "af0062da8a25cffae0aa0c22e3d33974b951143324dac8b7c9364e88cc6f6570"
+    },
+    "development": {
+      "conditions": {
+        "context": {
+          "n": 200,
+          "metrics": {
+            "Acc1": 0.1,
+            "Acc5": 0.195,
+            "NDCG5": 0.15152854691238615
+          },
+          "format_valid": 200,
+          "candidate_hit_n": 102,
+          "conditional_metrics": {
+            "Acc1": 0.19607843137254902,
+            "Acc5": 0.38235294117647056,
+            "NDCG5": 0.29711479786742384
+          }
+        },
+        "personal": {
+          "n": 200,
+          "metrics": {
+            "Acc1": 0.16,
+            "Acc5": 0.34,
+            "NDCG5": 0.2603559158367648
+          },
+          "format_valid": 200,
+          "candidate_hit_n": 102,
+          "conditional_metrics": {
+            "Acc1": 0.3137254901960784,
+            "Acc5": 0.6666666666666666,
+            "NDCG5": 0.5105017957583624
+          }
+        },
+        "population": {
+          "n": 200,
+          "metrics": {
+            "Acc1": 0.085,
+            "Acc5": 0.19,
+            "NDCG5": 0.14427464043925411
+          },
+          "format_valid": 200,
+          "candidate_hit_n": 102,
+          "conditional_metrics": {
+            "Acc1": 0.16666666666666666,
+            "Acc5": 0.37254901960784315,
+            "NDCG5": 0.28289145184167475
+          }
+        },
+        "fixed_fusion": {
+          "n": 200,
+          "metrics": {
+            "Acc1": 0.14,
+            "Acc5": 0.32,
+            "NDCG5": 0.23538817160072195
+          },
+          "format_valid": 200,
+          "candidate_hit_n": 102,
+          "conditional_metrics": {
+            "Acc1": 0.27450980392156865,
+            "Acc5": 0.6274509803921569,
+            "NDCG5": 0.46154543451121954
+          }
+        }
+      },
+      "paired_comparisons": {
+        "personal-population": {
+          "difference": [
+            0.075,
+            0.15,
+            0.1160812753975107
+          ],
+          "ci95": [
+            [
+              0.035,
+              0.12
+            ],
+            [
+              0.09,
+              0.21
+            ],
+            [
+              0.07608391520486804,
+              0.15809606171027238
+            ]
+          ],
+          "a_only_acc1": 17,
+          "b_only_acc1": 2,
+          "acc1_exact_p": 0.000728607177734375,
+          "acc1_holm_p": 0.002185821533203125
+        },
+        "fixed_fusion-personal": {
+          "difference": [
+            -0.02,
+            -0.02,
+            -0.02496774423604283
+          ],
+          "ci95": [
+            [
+              -0.05,
+              0.005
+            ],
+            [
+              -0.05,
+              0.005
+            ],
+            [
+              -0.045154671563693884,
+              -0.004836347794431194
+            ]
+          ],
+          "a_only_acc1": 2,
+          "b_only_acc1": 6,
+          "acc1_exact_p": 0.2890625,
+          "acc1_holm_p": 0.2890625
+        },
+        "fixed_fusion-population": {
+          "difference": [
+            0.055,
+            0.13,
+            0.09111353116146784
+          ],
+          "ci95": [
+            [
+              0.025,
+              0.09
+            ],
+            [
+              0.075,
+              0.185
+            ],
+            [
+              0.05995237370085219,
+              0.12382381086906649
+            ]
+          ],
+          "a_only_acc1": 11,
+          "b_only_acc1": 0,
+          "acc1_exact_p": 0.0009765625,
+          "acc1_holm_p": 0.002185821533203125
+        }
+      },
+      "oracle_personal_population": {
+        "acc1": 0.17,
+        "personal_only": 17,
+        "population_only": 2,
+        "both": 15,
+        "neither": 166,
+        "interpretation": "Post-hoc diagnostic upper bound, not a deployable selector"
+      },
+      "metric_order": [
+        "Acc1",
+        "Acc5",
+        "NDCG5"
+      ],
+      "bootstrap_draws": 10000,
+      "seed": 20261024,
+      "format_reasons": {
+        "context": {
+          "valid": 200
+        },
+        "personal": {
+          "valid": 200
+        },
+        "population": {
+          "valid": 200
+        },
+        "fixed_fusion": {
+          "valid": 200
+        }
+      },
+      "response_sha256": "63452de4bd741db3d6515c02f19a90cb8c0575792676e31ff04cc6d4252b14fd"
+    }
+  },
+  "config_sha256": "0999c45e8875c93c727061970917eebe5733894d8becb90c11533938a1498ee0",
+  "run_summary_sha256": "0ddd490b49f9c2556ab55bc29e86ac510fb06d9472f32957cbe9602da35a7b2d",
+  "evaluator_sha256": "7c80b628721060e60cd3f63e4581778d98a30b45d32bddd79f49fdeae50f1ac2",
+  "cost": {
+    "status": "completed",
+    "model_calls": 2400,
+    "queries": 600,
+    "format_failures": 3,
+    "total_input_tokens": 3503121,
+    "total_output_tokens": 67200,
+    "elapsed_seconds": 2876.398776292801,
+    "peak_gpu_allocated_bytes": 17689284608,
+    "metadata_sha256": "b11ee1e9ab89c0b64fca45066b696489d290973b3d43fe1a166fc25d73e6c8b8",
+    "responses": {
+      "fit": "af0062da8a25cffae0aa0c22e3d33974b951143324dac8b7c9364e88cc6f6570",
+      "development": "63452de4bd741db3d6515c02f19a90cb8c0575792676e31ff04cc6d4252b14fd"
+    }
+  },
+  "caveats": [
+    "Development diagnostics; not independent confirmatory habit-change evaluation.",
+    "Shared retrieval already uses both sources; condition differences concern additional evidence.",
+    "Strict formatting failures count as misses; report format success separately.",
+    "Holm correction is within each phase across the three planned Acc1 comparisons; no pooled fit/development test."
+  ]
+}
