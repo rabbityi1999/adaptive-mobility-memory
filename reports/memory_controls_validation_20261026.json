@@ -1,0 +1,40 @@
+{
+  "status": "independent_memory_controls_validation_pass",
+  "phases": {
+    "fit": {
+      "queries": 400,
+      "controls_checked": 1200,
+      "old_responses_checked": 1600,
+      "generate": 1054,
+      "reuse": 146,
+      "prompts_sha256": "752ed8fb510d72a7ec1bea98879b65a18b7219db968cb701c746fb9a30dc64b1",
+      "response_sha256": "af0062da8a25cffae0aa0c22e3d33974b951143324dac8b7c9364e88cc6f6570",
+      "input_tokens_and_cache_mapping_verified": true,
+      "all_prescribed_text_changes_verified": true
+    },
+    "development": {
+      "queries": 200,
+      "controls_checked": 600,
+      "old_responses_checked": 800,
+      "generate": 530,
+      "reuse": 70,
+      "prompts_sha256": "5e4f0a7ce2389ca31b2891684efb15df4906cb0ee96d4fa04570d1e0ee4bbe87",
+      "response_sha256": "63452de4bd741db3d6515c02f19a90cb8c0575792676e31ff04cc6d4252b14fd",
+      "input_tokens_and_cache_mapping_verified": true,
+      "all_prescribed_text_changes_verified": true
+    }
+  },
+  "model_calls": 0,
+  "model_loaded": false,
+  "label_files_opened": 0,
+  "old_responses_checked": 2400,
+  "reserve_queries": 0,
+  "planned_new_calls": 1584,
+  "planned_reuse": 216,
+  "preflight_sha256": "80b5dbdfece56b4c0486dafc9cc65f7c0bae3d140b8af288272d48f4b0b8d6d8",
+  "validator_sha256": "604385cd8f702b70d3bf8aef2c706bbc21a00395c7b700e9f35876178d68776e",
+  "config_sha256": "34f056d91b79130f72dc380615e13838a85d2920532eb63d699733c93c94cc12",
+  "original_results_sha256": "b7235e8dbe098ffb69dd7517af6d9e525a7088d1bd1f9d1a742342138f6e875f",
+  "elapsed_seconds": 10.962029933929443,
+  "scope": "Independent implementation in same research session, not an external reviewer. Checks full 1800 controls and 2400 sealed old responses; no new prediction or performance claim."
+}

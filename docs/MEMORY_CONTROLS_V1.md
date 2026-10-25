@@ -39,6 +39,10 @@
 
 ## 执行门槛与当前状态
 
+2026-10-26追加独立核验通过：[验证器](../scripts/validate_memory_controls.py)没有导入准备器、渲染器、runner或复算器。它从旧提示文本独立重建允许的变化，核对全部1,800条新提示、真实token指纹和复用规则，并验证2,400份旧响应的用户／查询／条件、源指纹及生成token解码；旧运行与外层退出码均为0。服务器耗时10.96秒、退出0，无标签读取、无模型权重加载、无新调用；全部输入与缓存统计与准备报告一致。[独立核验报告](../reports/memory_controls_validation_20261026.json)。七项合成测试包含四项验证器接受／拒绝测试，检查正确映射、数值和共享文本篡改、跨用户／伪缓存／长度错误、精确提示复用。独立性指代码实现与检查路径独立，不是另一研究者的盲审。
+
+**当前剩余门槛：** 实现并验证支持这三个控制条件及旧响应复用的runner、完成后独立复算器；两者就绪后重新检查GPU再启动。本轮没有控制预测。以下准备器“待独立验证”是其冻结检查点的历史状态，不修改已封存报告。
+
 2026-10-26 CPU预检退出0，耗时6.83秒、峰值RSS484,552KiB。全部1,800条计划通过准备器自检，最大输入1,635 token；两种轮换逐条等token检查均通过，无裁剪。fit新增1,054调用／复用146，development新增530／复用70，总计**1,584新增＋216复用**。personal6复用109份（fit74、development35），其中多数与群体为空时的旧融合提示相同，并不代表个人条目没有减少；personal6相对原personal的空干预仅fit2条。群体轮换空干预共107条，均复用旧融合。三项合成测试通过，未加载权重、未读取标签或逐人响应、0次新模型调用。[聚合预检报告](../reports/memory_controls_preflight_20261026.json)。这是准备器自检，独立核验仍待完成。
 
 [配置](../configs/memory_controls_v1.json)与[CPU准备器](../scripts/prepare_memory_controls.py)已形成。准备器只读取已验收的无目标输入、旧提示及聚合验收报告，不读取标签文件和逐人响应、不加载权重。它检查共享输入、原提示可重建性、原输入指纹、轮换长度、前6行与融合一致性、缓存匹配。
@@ -57,4 +61,19 @@ python scripts/prepare_memory_controls.py \
   --reader-config configs/memory_reader_v1.json \
   --config configs/memory_controls_v1.json --model "$LOCAL_LLAMA3" \
   --output "$NEW_CONTROL_PREFLIGHT"
+```
+
+独立核验命令（输出必须不存在；验证只读已有提示、原输入及旧响应，不调用模型）：
+
+```bash
+python scripts/validate_memory_controls.py \
+  --input-root "$ACCEPTED_INPUT_ROOT" \
+  --accepted-inputs reports/memory_diagnostic_inputs_20261025.json \
+  --original-prompts "$SEALED_READER_PROMPTS" \
+  --original-preflight reports/memory_reader_preflight_20261025.json \
+  --original-results reports/memory_reader_results_20261025.json \
+  --original-run "$COMPLETED_READER_RUN" \
+  --reader-config configs/memory_reader_v1.json \
+  --config configs/memory_controls_v1.json --model "$LOCAL_LLAMA3" \
+  --prompts "$NEW_CONTROL_PREFLIGHT" --output "$NEW_VALIDATION_JSON"
 ```
