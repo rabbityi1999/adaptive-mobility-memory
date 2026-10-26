@@ -4,7 +4,7 @@ Research on adaptive personal and collective memory for next-location prediction
 
 **[工作文档：论文指标、复现结果与后续计划](docs/WORK_LOG.md)** — the maintained project record. It separates published AgentMove scores, accepted preprocessing results, engineering checks and exploratory memory experiments.
 
-**[2026-10-26阶段收尾：已完成、未完成与暂停交接](docs/CLOSEOUT_20261026.md)** — the user has paused the recurring task. New research remains subject to the literature/direction/results approval gates; prepared controls are not an approval to execute.
+**[2026-10-26阶段收尾与恢复交接](docs/CLOSEOUT_20261026.md)** — manual literature preparation has resumed at the user's request; ten abstract-level candidates have been introduced and await user selection. The recurring task remains paused. New experiments remain subject to the literature/direction/results approval gates; prepared controls are not an approval to execute. See [the current work log](docs/WORK_LOG.md).
 
 The completed 200-user prediction comparison uses **local Meta-Llama-3-8B-Instruct** for AgentMove and LLM-ZS, then the same model for ablations. See [the frozen model choice and planned settings](configs/tokyo_llama3_baseline.json). This is a substitute-model framework reproduction; the paper's main table uses GPT-4o-mini.
 
