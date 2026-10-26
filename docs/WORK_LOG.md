@@ -2,6 +2,8 @@
 
 更新日期：2026-10-26（北京时间）。研究归属：工作五，个体与群体记忆增强的移动智能体。
 
+**2026-10-26有上限本地续跑已启动：** 用户明确选择“启用有上限的自动续跑”。使用Auto-research-project提交ad219dd（workflow 0.3.0），复用已登记的五篇精读笔记和横向比较，从ready_for_slides进入约15分钟中文组会PPT制作。独立监督进程已取得Codex会话ID并进入第1轮；累计最多12轮，每轮最多1200秒，网络故障有上限重试，权限／额度／缺工具等阻碍停止。一次仅一个run写入者；监督仅写本地研究run，不启动实验、远程算力、定时任务或对外消息，不推送材料。状态和逐轮日志位于原run的`.research-supervisor/`，停止入口见工具仓库docs/supervision.md。此条仅确认启动，不代表PPT完成或已通过视觉验收；以run内最新state与QA为准。
+
 **2026-10-26五篇全文精读完成：** 恢复时核实上一聊天的真实选文原话及CLI记录，范围为P003 BudgetMem、P004 ShareMem、P006 CAMEL、P007 NextLocMoE、P010 SHARE。五篇完整PDF均在本地，已集中到原run的`sources/`并记录文件指纹；五份中文笔记、关键图表目视核验及`synthesis.md`横向比较已完成。CLI逐篇登记后为`ready_for_slides`，五篇校验无问题，`delivery=null`；本轮先交付用户要求的精读材料，尚无PPT成品。BudgetMem实读arXiv v3（正式PDF获取失败），NextLocMoE实读arXiv v1，ShareMem为预印本；CAMEL及SHARE以正式版为主，不将版本身份混同。资料保持在本地`research_workspace/auto_research_project_tooling/runs/adaptive-mobility-memory-20261025/`，不随项目进度提交公开。
 
 **本轮研究判断：** 五篇分别涉及模块计算档位、跨用户程序经验、漂移下内部专家、轨迹内部专家及双人共同经历，不能合并成同一种个人／群体记忆机制。ShareMem的局部覆盖干预提示先分清经验稀缺与习惯失配；CAMEL依赖预测后的标签反馈，BudgetMem费用主要是抽取开销。当前仍先验证已有证据／条目预算控制及可预测互补空间，不将宽泛的双源＋路由＋预算组合声称为新颖方法。既有实验指标保持冻结；没有新模型预测、reserve访问、服务器探针、飞书审批或恢复定时任务。工具副本本轮读取到版本0.3.0（提交ad219dd）；保留原run历史并更新检查点。GitHub只读连接已恢复，读到远端main为用户提供的cd68e0a；下面上传失败段为历史，交付时另核对普通push及远端提交。
