@@ -4,9 +4,11 @@ Research on adaptive personal and collective memory for next-location prediction
 
 **[工作文档：论文指标、复现结果与后续计划](docs/WORK_LOG.md)** — the maintained project record. It separates published AgentMove scores, accepted preprocessing results, engineering checks and exploratory memory experiments.
 
+**[2026-10-26阶段收尾：已完成、未完成与暂停交接](docs/CLOSEOUT_20261026.md)** — the user has paused the recurring task. New research remains subject to the literature/direction/results approval gates; prepared controls are not an approval to execute.
+
 The completed 200-user prediction comparison uses **local Meta-Llama-3-8B-Instruct** for AgentMove and LLM-ZS, then the same model for ablations. See [the frozen model choice and planned settings](configs/tokyo_llama3_baseline.json). This is a substitute-model framework reproduction; the paper's main table uses GPT-4o-mini.
 
-This repository is being populated prospectively from an existing research workspace. It contains address/session/input verification, prediction runners and the completed three-condition Llama3 results. Official module ablations and paper-protocol alignment remain unfinished; adaptive memory routing has not been validated.
+This repository is being populated prospectively from an existing research workspace. It contains full-city address/session/input verification, completed Tokyo Llama3 framework comparisons, explicit module-ablation reconstructions, a paper-text filtering comparison and a completed 600-user memory-reader diagnostic. Exact paper-score/protocol alignment and stable adaptive memory routing remain unverified. The next evidence/budget controls have passed prompt and cache validation but have no new predictions.
 
 ## Final Tokyo address audit
 
